@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { getBookList } from '../store/booksReducer';
+import { getHouseList } from '../store/booksReducer';
 import { Link } from 'react-router-dom';
 
 import { Redirect } from 'react-router-dom';
@@ -40,11 +40,13 @@ const styles = theme => ({
 class HousesRegion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchType: '', searchTerm: '', error: '' };
+    this.state = { houseList: {}, searchTerm: '', error: '' };
   }
 
   componentDidMount() {
-    this.setState({ books: this.props.bookList });
+    // const self = this;
+    // this.props.getHouseList();
+    this.setState({ houseList: this.props.allHouses });
   }
 
   handleChange = name => event => {
@@ -139,6 +141,7 @@ class HousesRegion extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    console.log('this state houses fulll list', this.props.allHouses);
     return (
       <div
         style={{
@@ -158,13 +161,13 @@ class HousesRegion extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    bookList: state.bookList
+    allHouses: state.allHouses
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBookList: id => dispatch(getBookList(id))
+    getHouseList: () => dispatch(getHouseList())
   };
 };
 

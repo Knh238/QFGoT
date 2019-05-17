@@ -15,6 +15,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { getHouseList } from '../store/booksReducer';
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -39,100 +41,125 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
-function NavDrawer(props) {
-  const { classes } = props;
+class NavDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { houseList: {} };
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            GOT stuff
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          <Divider light />
-          <ListItem key="books" divider={true}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="books" />
-          </ListItem>
-          <ListItem inset button key="major works">
-            <ListItemText inset primary="major works" />
-          </ListItem>
-          <ListItem button key="minor texts">
-            <ListItemText inset primary="minor texts" />
-          </ListItem>
-        </List>
-        <Divider light />
-        <List>
-          <Divider light />
-          <ListItem key="houses" divider={true}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="houses" />
-          </ListItem>
-          <ListItem
-            inset
-            button
-            key="by region"
-            component={Link}
-            to={{
-              pathname: '/HousesByRegion'
-            }}
-          >
-            <ListItemText inset primary="by region" />
-          </ListItem>
-          <ListItem
-            button
-            key="by name"
-            component={Link}
-            to={{
-              pathname: '/HousesByName'
-            }}
-          >
-            <ListItemText inset primary="by name" />
-          </ListItem>
-        </List>
-        <Divider light />
-        <List>
-          <Divider light />
-          <ListItem key="characters" divider={true}>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-            <ListItemText primary="characters" />
-          </ListItem>
+  componentDidMount() {
+    this.props.getHouseList();
+  }
 
-          <ListItem inset button key="by culture">
-            <ListItemText inset primary="by culture" />
-          </ListItem>
-          <ListItem button key="by gender">
-            <ListItemText inset primary="by gender" />
-          </ListItem>
-          <ListItem button key="by book">
-            <ListItemText inset primary="by book" />
-          </ListItem>
-        </List>
-      </Drawer>
-    </div>
-  );
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              GOT stuff
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <List>
+            <Divider light />
+            <ListItem key="books" divider={true}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="books" />
+            </ListItem>
+            <ListItem inset button key="major works">
+              <ListItemText inset primary="major works" />
+            </ListItem>
+            <ListItem button key="minor texts">
+              <ListItemText inset primary="minor texts" />
+            </ListItem>
+          </List>
+          <Divider light />
+          <List>
+            <Divider light />
+            <ListItem key="houses" divider={true}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="houses" />
+            </ListItem>
+            <ListItem
+              inset
+              button
+              key="by region"
+              component={Link}
+              to={{
+                pathname: '/HousesByRegion'
+              }}
+            >
+              <ListItemText inset primary="by region" />
+            </ListItem>
+            <ListItem
+              button
+              key="by name"
+              component={Link}
+              to={{
+                pathname: '/HousesByName'
+              }}
+            >
+              <ListItemText inset primary="by name" />
+            </ListItem>
+          </List>
+          <Divider light />
+          <List>
+            <Divider light />
+            <ListItem key="characters" divider={true}>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="characters" />
+            </ListItem>
+
+            <ListItem inset button key="by culture">
+              <ListItemText inset primary="by culture" />
+            </ListItem>
+            <ListItem button key="by gender">
+              <ListItemText inset primary="by gender" />
+            </ListItem>
+            <ListItem button key="by book">
+              <ListItemText inset primary="by book" />
+            </ListItem>
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    allHouses: state.allHouses
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getHouseList: () => dispatch(getHouseList())
+  };
+};
 
 NavDrawer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(NavDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles, { withTheme: true })(NavDrawer)
+);

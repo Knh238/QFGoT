@@ -12,10 +12,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import { getBookList } from '../store/booksReducer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { getHouseList } from '../store/booksReducer';
 
 const styles = theme => ({
   container: {
@@ -43,19 +43,25 @@ const styles = theme => ({
 class HousesName extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { housesArr: [], currentPage: 1 };
+    this.state = {
+      housesArr: [],
+      houseList: {},
+      currentPage: 1
+    };
     this.loadNextHouses = this.loadNextHouses.bind(this);
   }
 
   componentDidMount() {
     const self = this;
     const currPage = this.state.currentPage;
+    const allHouses = this.props.allHouses;
+
     return axios
       .get(
         `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
       )
       .then(function(res) {
-        self.setState({ housesArr: res.data });
+        self.setState({ housesArr: res.data, houseList: allHouses });
       });
   }
 
@@ -73,8 +79,38 @@ class HousesName extends React.Component {
         self.setState({ housesArr: res.data, currentPage: newPage });
       });
   }
-
+  renderOverlord(overlord) {
+    const allHouses = this.props.allHouses;
+    if (overlord.length > 1) {
+      const overlordStr = overlord.slice(45);
+      const overlordNum = parseInt(overlordStr);
+      if (overlordNum < 250) {
+        const overlordName = allHouses[overlordStr].name;
+        return (
+          <CardContent align="center">
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#ef9a9a', fontFamily: 'Signika' }}
+              onClick={() => this.handleSubmit()}
+            >
+              overlord:{overlordName}
+            </Button>
+          </CardContent>
+          // <Typography
+          //   variant="h5"
+          //   style={{ fontFamily: 'Signika' }}
+          //   align="center"
+          // >
+          //   Overlord: {overlordName}
+          // </Typography>
+        );
+      }
+    } else {
+      return '';
+    }
+  }
   renderRegions() {
+    const allHouses = this.props.allHouses;
     return this.state.housesArr.map(house => (
       <Card
         style={{
@@ -83,13 +119,12 @@ class HousesName extends React.Component {
         key={house.name}
       >
         <Typography
-          variant="h1"
+          variant="h2"
           style={{ fontFamily: 'PatrickHand' }}
           align="center"
         >
           {house.name}
         </Typography>
-
         <Typography
           variant="h3"
           style={{ fontFamily: 'Marck Script,cursive' }}
@@ -123,8 +158,17 @@ class HousesName extends React.Component {
           style={{ fontFamily: 'Signika' }}
           align="center"
         >
-          {house.overlord}
+          {house.overlord.slice(45)}
         </Typography>
+        {this.renderOverlord(house.overlord)}
+        {/* <Typography
+          variant="h5"
+          style={{ fontFamily: 'Signika' }}
+          align="center"
+        >
+          {/* {house.overlord} */}
+        {/* {allHouses[house.overlord.slice(45)]}
+        </Typography> */}
         {/* <CardContent align="center">
           <CardMedia
             component="img"
@@ -133,7 +177,7 @@ class HousesName extends React.Component {
             title="key"
           />
         </CardContent> */}
-        <CardContent align="center">
+        {/* <CardContent align="center">
           <Button
             variant="contained"
             style={{ backgroundColor: '#ef9a9a', fontFamily: 'Signika' }}
@@ -141,13 +185,14 @@ class HousesName extends React.Component {
           >
             {house.name}
           </Button>
-        </CardContent>
+        </CardContent> */}
       </Card>
     ));
   }
   render() {
     const { classes } = this.props;
-    console.log('this state house is', this.state.housesArr);
+    // console.log('this state house is', this.state.housesArr);
+    console.log('this state house all houses ', this.props.allHouses);
     return (
       <div>
         <div
@@ -203,16 +248,14 @@ class HousesName extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    bookList: state.bookList
+    allHouses: state.allHouses
   };
 };
-
 const mapDispatchToProps = dispatch => {
   return {
-    getBookList: id => dispatch(getBookList(id))
+    getHouseList: () => dispatch(getHouseList())
   };
 };
-
 HousesName.propTypes = {
   classes: PropTypes.object.isRequired
 };
