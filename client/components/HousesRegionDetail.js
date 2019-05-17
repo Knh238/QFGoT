@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -45,99 +46,97 @@ class HousesRegionDetail extends React.Component {
 
   componentDidMount() {
     const self = this;
-    //props state = region
-    const currRegion = this.state.currentRegion;
+
+    const currRegion = this.props.location.state.regionName;
     return axios
       .get(`https://www.anapioficeandfire.com/api/houses?region=${currRegion}`)
       .then(function(res) {
         self.setState({ housesArr: res.data });
       });
   }
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
 
-  regionDetails() {}
-
-  renderRegions() {
-    const regionsArr = [
-      {
-        name: 'Dorne',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/f/f5/Dorne.png/revision/latest/top-crop/width/200/height/150?cb=20120719190909'
-      },
-      {
-        name: 'The Westerlands',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/7/7f/The_Westerlands.png/revision/latest/top-crop/width/200/height/150?cb=20120719201401'
-      },
-      {
-        name: 'The Riverlands',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/d/d0/The_Riverlands.png/revision/latest/top-crop/width/200/height/150?cb=20120719200633'
-      },
-      {
-        name: 'The North',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/f/f3/The_North.png/revision/latest/top-crop/width/200/height/150?cb=20120719200112'
-      },
-      {
-        name: 'The Reach',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/8/89/The_Reach.png/revision/latest/top-crop/width/200/height/150?cb=20120719200419'
-      },
-      {
-        name: 'The Vale',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/d/d7/Vale_of_Arryn.png/revision/latest/top-crop/width/200/height/150?cb=20120719201619'
-      },
-      {
-        name: 'Iron Islands',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/e/eb/Iron_Islands.png/revision/latest/top-crop/width/200/height/150?cb=20120719194710'
-      },
-      {
-        name: 'The Crownlands',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/5/59/The_Crownlands.png/revision/latest/top-crop/width/200/height/150?cb=20120719191632'
-      },
-      {
-        name: 'The Stormlands',
-        img:
-          'https://vignette.wikia.nocookie.net/gameofthrones/images/5/5f/The_Stormlands.png/revision/latest/top-crop/width/200/height/150?cb=20150221004502'
-      }
-    ];
-    return regionsArr.map(region => (
+  renderRegion() {
+    const regionArr = this.state.housesArr;
+    return regionArr.map(house => (
       <Card
         style={{
           width: '40%'
         }}
-        key={region.name}
+        key={house.name}
       >
+        <CardContent align="center">
+          <Typography
+            variant="h3"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+            align="center"
+          >
+            {house.name}
+          </Typography>
+        </CardContent>
+
+        <CardContent align="center">
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Marck Script,cursive' }}
+            align="center"
+          >
+            Coat of Arms: "{house.coatOfArms}"
+          </Typography>
+        </CardContent>
+
+        <CardContent align="center" />
         <Typography
-          variant="h3"
-          style={{ fontFamily: 'Signika' }}
+          variant="h5"
+          style={{ fontFamily: 'Pirata One, cursive' }}
           align="center"
         >
-          {region.name}
+          Words: "{house.words}"
         </Typography>
-        <CardContent align="center">
-          <CardMedia
-            component="img"
-            style={{ height: '30%', width: '30%' }}
-            image={region.img}
-            title="key"
-          />
-        </CardContent>
+        <Typography
+          variant="h4"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          Seat: "{house.seats}"
+        </Typography>
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          Titles: "{house.titles}"
+        </Typography>
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          Current Lord: "{house.currentLord.slice(49)}"
+        </Typography>
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          Heir: "{house.heir.slice(49)}"
+        </Typography>
+
         <CardContent align="center">
           <Button
             variant="contained"
-            style={{ backgroundColor: '#ef9a9a', fontFamily: 'Signika' }}
-            onClick={() => this.handleSubmit()}
+            style={{
+              backgroundColor: '#dab239',
+              fontFamily: 'Uncial Antiqua, cursive'
+            }}
+            component={Link}
+            to={{
+              pathname: '/IndividualHouse',
+              state: {
+                houseId: house.url.slice(45)
+              }
+            }}
           >
-            {region.name}
+            {house.name}
           </Button>
         </CardContent>
       </Card>
@@ -145,18 +144,41 @@ class HousesRegionDetail extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const regionName = this.props.location.state.regionName;
+    const regionImg = this.props.location.state.regionImg;
     return (
-      <div
-        style={{
-          marginLeft: '10%',
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}
-      >
-        {this.renderRegions()}
-      </div>
+      <Paper>
+        <Card>
+          <CardContent align="center">
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+              align="center"
+            >
+              {regionName}
+            </Typography>
+          </CardContent>
+          <CardContent align="center">
+            <CardMedia
+              component="img"
+              style={{ height: '50%', width: '30%' }}
+              image={regionImg}
+              title="key"
+            />
+          </CardContent>
+        </Card>
+        <div
+          style={{
+            marginLeft: '10%',
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}
+        >
+          {this.renderRegion()}
+        </div>
+      </Paper>
     );
   }
 }

@@ -23,11 +23,25 @@ class Home extends React.Component {
         }}
       >
         <Typography
-          variant="h3"
-          style={{ fontFamily: 'Signika' }}
+          variant="h1"
+          style={{ fontFamily: 'Pirata One, cursive' }}
           align="center"
         >
-          Lets get reading!
+          Winter is coming
+        </Typography>
+        <Typography
+          variant="h3"
+          style={{ fontFamily: 'Marck Script,cursive', marginTop: 10 }}
+          align="center"
+        >
+          ....But that 6th book aint!
+        </Typography>
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Marck Script,cursive', marginTop: 10 }}
+          align="center"
+        >
+          #SHADE
         </Typography>
 
         <CardContent align="center">

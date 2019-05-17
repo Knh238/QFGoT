@@ -1,6 +1,7 @@
 export { default as Home } from './Home';
 export { default as HousesRegion } from './HousesRegion';
 export { default as HousesRegionDetail } from './HousesRegionDetail';
+export { default as SingleHouseInfo } from './SingleHouseInfo';
 export { default as HousesName } from './HousesName';
 export { default as SingleBook } from './SingleBook';
 export { default as NavDrawer } from './Drawer';

@@ -10,7 +10,9 @@ import {
   FindBooks,
   SingleBook,
   HousesRegion,
-  HousesName
+  HousesName,
+  HousesRegionDetail,
+  SingleHouseInfo
 } from './components';
 
 export default class Routes extends Component {
@@ -22,7 +24,9 @@ export default class Routes extends Component {
         <Route exact path="/FindBooks" component={FindBooks} />
         <Route exact path="/SingleBook" component={SingleBook} />
         <Route exact path="/HousesByRegion" component={HousesRegion} />
+        <Route exact path="/HousesInRegion" component={HousesRegionDetail} />
         <Route exact path="/HousesByName" component={HousesName} />
+        <Route exact path="/IndividualHouse" component={SingleHouseInfo} />
       </Switch>
     );
   }

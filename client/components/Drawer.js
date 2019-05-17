@@ -28,7 +28,8 @@ const styles = theme => ({
     display: 'flex'
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: '#2d3258'
   },
   drawer: {
     width: drawerWidth,
@@ -61,14 +62,13 @@ class NavDrawer extends React.Component {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            {/* <HomeIcon /> */}
             <Typography
               variant="h3"
               color="inherit"
               noWrap
-              style={{ marginLeft: '50%', fontFamily: 'Marck Script,cursive' }}
+              style={{ marginLeft: '42%', fontFamily: 'Pirata One, cursive' }}
             >
-              GOT stuff
+              Kristin's Game of Thrones Build
             </Typography>
           </Toolbar>
         </AppBar>
@@ -92,20 +92,24 @@ class NavDrawer extends React.Component {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText inset primary="Home" />
+              <ListItemText
+                inset
+                primary="Home"
+                style={{ fontFamily: 'Pirata One, cursive' }}
+              />
             </ListItem>
             <Divider light />
             <ListItem key="books" divider={true}>
               <ListItemIcon>
                 <BookIcon />
               </ListItemIcon>
-              <ListItemText primary="books" />
+              <ListItemText primary="Books" />
             </ListItem>
             <ListItem inset button key="major works">
-              <ListItemText inset primary="major works" />
+              <ListItemText inset primary="Novels" />
             </ListItem>
             <ListItem button key="minor texts">
-              <ListItemText inset primary="minor texts" />
+              <ListItemText inset primary="Other works" />
             </ListItem>
           </List>
           <Divider light />
@@ -115,7 +119,7 @@ class NavDrawer extends React.Component {
               <ListItemIcon>
                 <SecurityIcon />
               </ListItemIcon>
-              <ListItemText primary="houses" />
+              <ListItemText primary="Houses" />
             </ListItem>
             <ListItem
               inset
@@ -126,7 +130,7 @@ class NavDrawer extends React.Component {
                 pathname: '/HousesByRegion'
               }}
             >
-              <ListItemText inset primary="by region" />
+              <ListItemText inset primary="By Region" />
             </ListItem>
             <ListItem
               button
@@ -136,7 +140,7 @@ class NavDrawer extends React.Component {
                 pathname: '/HousesByName'
               }}
             >
-              <ListItemText inset primary="by name" />
+              <ListItemText inset primary="By Name" />
             </ListItem>
           </List>
           <Divider light />
@@ -146,17 +150,17 @@ class NavDrawer extends React.Component {
               <ListItemIcon>
                 <PeopleOutlineIcon />
               </ListItemIcon>
-              <ListItemText primary="characters" />
+              <ListItemText primary="Characters" />
             </ListItem>
 
             <ListItem inset button key="by culture">
-              <ListItemText inset primary="by culture" />
+              <ListItemText inset primary="By Culture" />
             </ListItem>
             <ListItem button key="by gender">
-              <ListItemText inset primary="by gender" />
+              <ListItemText inset primary="By Gender" />
             </ListItem>
             <ListItem button key="by book">
-              <ListItemText inset primary="by book" />
+              <ListItemText inset primary="By Book" />
             </ListItem>
           </List>
         </Drawer>

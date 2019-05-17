@@ -42,7 +42,7 @@ const styles = theme => ({
   }
 });
 
-class HousesName extends React.Component {
+class MinorTexts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,68 +60,12 @@ class HousesName extends React.Component {
     const allHouses = this.props.allHouses;
 
     return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
-      )
+      .get(`https://www.anapioficeandfire.com/api/books/1`)
       .then(function(res) {
         self.setState({ housesArr: res.data, houseList: allHouses });
       });
   }
 
-  loadNextHouses() {
-    const newPage = (this.state.currentPage += 1);
-    //add error handling so it wont go above 24
-    const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
-      });
-  }
-  loadPrevHouses() {
-    const newPage = (this.state.currentPage -= 1);
-    //add error handling so it wont go below or to 0
-    const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
-      });
-  }
-
-  renderOverlord(overlord) {
-    const allHouses = this.props.allHouses;
-    if (overlord.length > 1) {
-      const overlordStr = overlord.slice(45);
-      const overlordNum = parseInt(overlordStr);
-      if (overlordNum < 250) {
-        const overlordName = allHouses[overlordStr].name;
-        return (
-          <CardContent align="center">
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
-              component={Link}
-              to={{
-                pathname: '/IndividualHouse',
-                state: {
-                  houseId: overlordStr
-                }
-              }}
-            >
-              overlord:{overlordName}
-            </Button>
-          </CardContent>
-        );
-      }
-    } else {
-      return '';
-    }
-  }
   renderRegions() {
     const allHouses = this.props.allHouses;
     return this.state.housesArr.map(house => (
@@ -181,16 +125,6 @@ class HousesName extends React.Component {
           >
             {house.currentlord}
           </Typography>
-        </CardContent>
-        <CardContent>
-          {/* <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.overlord.slice(45)}
-          </Typography> */}
-          {this.renderOverlord(house.overlord)}
         </CardContent>
       </Card>
     ));
@@ -268,7 +202,8 @@ class HousesName extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allHouses: state.allHouses
+    allHouses: state.allHouses,
+    minorBooksArr: state.minorBooksArr
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -276,9 +211,9 @@ const mapDispatchToProps = dispatch => {
     getHouseList: () => dispatch(getHouseList())
   };
 };
-HousesName.propTypes = {
+MinorTexts.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesName)
+  withStyles(styles, { withTheme: true })(MinorTexts)
 );

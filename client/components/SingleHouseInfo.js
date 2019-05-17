@@ -42,54 +42,25 @@ const styles = theme => ({
   }
 });
 
-class HousesName extends React.Component {
+class SingleHouseInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       housesArr: [],
       houseList: {},
+      currHouse: {},
       currentPage: 1
     };
-    this.loadNextHouses = this.loadNextHouses.bind(this);
-    this.loadPrevHouses = this.loadPrevHouses.bind(this);
   }
 
   componentDidMount() {
     const self = this;
-    const currPage = this.state.currentPage;
-    const allHouses = this.props.allHouses;
+    const currHouse = this.props.location.state.houseId;
 
     return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
-      )
+      .get(`https://www.anapioficeandfire.com/api/houses/${currHouse}`)
       .then(function(res) {
-        self.setState({ housesArr: res.data, houseList: allHouses });
-      });
-  }
-
-  loadNextHouses() {
-    const newPage = (this.state.currentPage += 1);
-    //add error handling so it wont go above 24
-    const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
-      });
-  }
-  loadPrevHouses() {
-    const newPage = (this.state.currentPage -= 1);
-    //add error handling so it wont go below or to 0
-    const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
+        self.setState({ currHouse: res.data });
       });
   }
 
@@ -105,13 +76,7 @@ class HousesName extends React.Component {
             <Button
               variant="contained"
               style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
-              component={Link}
-              to={{
-                pathname: '/IndividualHouse',
-                state: {
-                  houseId: overlordStr
-                }
-              }}
+              onClick={() => this.handleSubmit()}
             >
               overlord:{overlordName}
             </Button>
@@ -122,22 +87,17 @@ class HousesName extends React.Component {
       return '';
     }
   }
-  renderRegions() {
-    const allHouses = this.props.allHouses;
-    return this.state.housesArr.map(house => (
-      <Card
-        style={{
-          width: '40%'
-        }}
-        key={house.name}
-      >
+  renderHouse() {
+    // const currHouse = this.props.location.state.houseId;
+    return this.state.currHouse ? (
+      <Card>
         <CardContent>
           <Typography
             variant="h2"
             style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
-            {house.name}
+            {this.state.currHouse.name}
           </Typography>
         </CardContent>
         <CardContent>
@@ -148,29 +108,35 @@ class HousesName extends React.Component {
             }}
             align="center"
           >
-            {house.coatOfArms.length ? house.coatOfArms : null}
+            Coat of Arms: "{this.state.currHouse.coatOfArms}"
           </Typography>
         </CardContent>
-
-        {house.seats.length > 1 ? (
-          <CardContent>
-            <Typography
-              variant="h4"
-              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-              align="center"
-            >
-              Seat:
-              {house.seats}
-            </Typography>
-          </CardContent>
-        ) : null}
+        <CardContent>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: 'Marck Script,cursive'
+            }}
+            align="center"
+          >
+            Words: "{this.state.currHouse.words}"
+          </Typography>
+        </CardContent>
         <CardContent>
           <Typography
             variant="h4"
             style={{ fontFamily: 'Uncial Antiqua, cursive' }}
             align="center"
           >
-            Region: {house.region}
+            Seat:"{this.state.currHouse.seats}"
+          </Typography>
+
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            align="center"
+          >
+            Region: {this.state.currHouse.region}
           </Typography>
         </CardContent>
         <CardContent>
@@ -179,25 +145,35 @@ class HousesName extends React.Component {
             style={{ fontFamily: 'Uncial Antiqua, cursive' }}
             align="center"
           >
-            {house.currentlord}
+            Titles: "{this.state.currHouse.titles}"
           </Typography>
+
+          {this.state.currHouse.heir ? (
+            <Typography
+              variant="h5"
+              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+              align="center"
+            >
+              Heir: "{this.state.currHouse.heir.slice(49)}"
+            </Typography>
+          ) : null}
         </CardContent>
         <CardContent>
-          {/* <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.overlord.slice(45)}
-          </Typography> */}
-          {this.renderOverlord(house.overlord)}
+          {this.state.currHouse.currentLord ? (
+            <Typography
+              variant="h5"
+              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+              align="center"
+            >
+              {this.state.currHouse.currentlord}
+            </Typography>
+          ) : null}
         </CardContent>
       </Card>
-    ));
+    ) : null;
   }
   render() {
     const { classes } = this.props;
-    // console.log('this state house is', this.state.housesArr);
     console.log('this state house all houses ', this.props.allHouses);
     return (
       <div>
@@ -210,7 +186,7 @@ class HousesName extends React.Component {
             justifyContent: 'center'
           }}
         >
-          {this.state.housesArr ? this.renderRegions() : null}
+          {this.state.currHouse ? this.renderHouse() : null}
         </div>
         <div
           style={{
@@ -220,46 +196,7 @@ class HousesName extends React.Component {
             justifyContent: 'center',
             marginTop: 5
           }}
-        >
-          <Card>
-            <CardContent>
-              <Typography
-                variant="h4"
-                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-                align="center"
-              >
-                current page: {this.state.currentPage} of 23
-              </Typography>
-            </CardContent>
-            <CardContent align="center">
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#54bd9f',
-                  fontFamily: 'Uncial Antiqua, cursive',
-                  marginRight: 10
-                }}
-                align="center"
-                onClick={this.loadPrevHouses}
-              >
-                <KeyboardArrowLeftIcon />
-                previous 20
-              </Button>
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#54bd9f',
-                  fontFamily: 'Uncial Antiqua, cursive'
-                }}
-                align="center"
-                onClick={this.loadNextHouses}
-              >
-                next 20
-                <KeyboardArrowRightIcon />
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+        />
       </div>
     );
   }
@@ -276,9 +213,9 @@ const mapDispatchToProps = dispatch => {
     getHouseList: () => dispatch(getHouseList())
   };
 };
-HousesName.propTypes = {
+SingleHouseInfo.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesName)
+  withStyles(styles, { withTheme: true })(SingleHouseInfo)
 );
