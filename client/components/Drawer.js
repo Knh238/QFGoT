@@ -14,7 +14,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SecurityIcon from '@material-ui/icons/Security';
+import BookIcon from '@material-ui/icons/Book';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+import HomeIcon from '@material-ui/icons/Home';
 import { getHouseList } from '../store/booksReducer';
 import { connect } from 'react-redux';
 
@@ -58,7 +61,13 @@ class NavDrawer extends React.Component {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+            {/* <HomeIcon /> */}
+            <Typography
+              variant="h3"
+              color="inherit"
+              noWrap
+              style={{ marginLeft: '50%', fontFamily: 'Marck Script,cursive' }}
+            >
               GOT stuff
             </Typography>
           </Toolbar>
@@ -72,10 +81,23 @@ class NavDrawer extends React.Component {
         >
           <div className={classes.toolbar} />
           <List>
+            <ListItem
+              button
+              key="Home"
+              component={Link}
+              to={{
+                pathname: '/'
+              }}
+            >
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Home" />
+            </ListItem>
             <Divider light />
             <ListItem key="books" divider={true}>
               <ListItemIcon>
-                <InboxIcon />
+                <BookIcon />
               </ListItemIcon>
               <ListItemText primary="books" />
             </ListItem>
@@ -91,7 +113,7 @@ class NavDrawer extends React.Component {
             <Divider light />
             <ListItem key="houses" divider={true}>
               <ListItemIcon>
-                <InboxIcon />
+                <SecurityIcon />
               </ListItemIcon>
               <ListItemText primary="houses" />
             </ListItem>
@@ -122,7 +144,7 @@ class NavDrawer extends React.Component {
             <Divider light />
             <ListItem key="characters" divider={true}>
               <ListItemIcon>
-                <MailIcon />
+                <PeopleOutlineIcon />
               </ListItemIcon>
               <ListItemText primary="characters" />
             </ListItem>

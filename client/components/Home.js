@@ -34,7 +34,8 @@ class Home extends React.Component {
           <CardMedia
             component="img"
             style={{ height: '50%', width: '50%' }}
-            image="https://cdn130.picsart.com/270704750020201.jpg?c480x480"
+            // image="https://cdn130.picsart.com/270704750020201.jpg?c480x480"
+            image="https://cdn131.picsart.com/294876470053201.jpg?c480x480"
             title="books"
           />
         </CardContent>
