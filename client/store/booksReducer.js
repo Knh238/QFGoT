@@ -144,8 +144,125 @@ const regionsArr = [
       'https://vignette.wikia.nocookie.net/gameofthrones/images/d/d0/The_Riverlands.png/revision/latest?cb=20120719200633'
   }
 ];
-const minorBooksArr = [];
-const mainBooksArr = [];
+// {apiId:1 , title:"A Game of Thrones" , seriesNumber:"A Song Of Ice and Fire #1" ,author:"George R.R. Martin",datePublished:1996 ,numOfPages:694, coverImage:"https://images.gr-assets.com/books/1554191954l/13496.jpg"  }
+// {apiId:2 , title: "A Clash of Kings", seriesNumber:"A Song Of Ice and Fire #2",author: "George R.R. Martin" ,datePublished:1999, numOfPages: 768 , coverImage:'https://images.gr-assets.com/books/1353400431l/11788811.jpg'  }
+// {apiId:3 , title:"A Storm of Swords" , seriesNumber:"A Song Of Ice and Fire #3",author: "George R.R. Martin" ,datePublished:2000, numOfPages: 992 , coverImage:'https://images.gr-assets.com/books/1427886300l/11133581.jpg'  }
+// {apiId:5 , title: 'A Feast for Crows', seriesNumber:"A Song Of Ice and Fire #4",author: "George R.R. Martin" ,datePublished:2005, numOfPages: 748 , coverImage:'https://images.gr-assets.com/books/1525084743l/147917.jpg'  }
+// {apiId:8, title: "A Dance with Dragons", seriesNumber:"A Song Of Ice and Fire #5" ,author:"George R.R. Martin" ,datePublished: 2011, numOfPages:1040 , coverImage: 'https://images.gr-assets.com/books/1327885335l/10664113.jpg' }
+
+// {apiId: , title: , seriesNumber:, author: "George R.R. Martin" ,datePublished:, numOfPages:694 , coverImage:  }
+const mainBooksArr = [
+  {
+    apiId: 1,
+    title: 'A Game of Thrones',
+    seriesNumber: 'A Song Of Ice and Fire #1',
+    author: 'George R.R. Martin',
+    datePublished: 1996,
+    numOfPages: 694,
+    coverImage: 'https://images.gr-assets.com/books/1554191954l/13496.jpg'
+  },
+  {
+    apiId: 2,
+    title: 'A Clash of Kings',
+    seriesNumber: 'A Song Of Ice and Fire #2',
+    author: 'George R.R. Martin',
+    datePublished: 1999,
+    numOfPages: 768,
+    coverImage: 'https://images.gr-assets.com/books/1353400431l/11788811.jpg'
+  },
+  {
+    apiId: 3,
+    title: 'A Storm of Swords',
+    seriesNumber: 'A Song Of Ice and Fire #3',
+    author: 'George R.R. Martin',
+    datePublished: 2000,
+    numOfPages: 992,
+    coverImage: 'https://images.gr-assets.com/books/1427886300l/11133581.jpg'
+  },
+  {
+    apiId: 5,
+    title: 'A Feast for Crows',
+    seriesNumber: 'A Song Of Ice and Fire #4',
+    author: 'George R.R. Martin',
+    datePublished: 2005,
+    numOfPages: 748,
+    coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+  },
+  {
+    apiId: 8,
+    title: 'A Dance with Dragons',
+    seriesNumber: 'A Song Of Ice and Fire #5',
+    author: 'George R.R. Martin',
+    datePublished: 2011,
+    numOfPages: 1040,
+    coverImage: 'https://images.gr-assets.com/books/1327885335l/10664113.jpg'
+  }
+];
+const minorBooksArr = [
+  {
+    apiId: 4,
+    title: 'A Game of Thrones',
+    seriesNumber: 'A Song Of Ice and Fire #1',
+    author: 'George R.R. Martin',
+    datePublished: 1996,
+    numOfPages: 694,
+    coverImage: 'https://images.gr-assets.com/books/1554191954l/13496.jpg'
+  },
+  {
+    apiId: 6,
+    title: 'A Clash of Kings',
+    seriesNumber: 'A Song Of Ice and Fire #2',
+    author: 'George R.R. Martin',
+    datePublished: 1999,
+    numOfPages: 768,
+    coverImage: 'https://images.gr-assets.com/books/1353400431l/11788811.jpg'
+  },
+  {
+    apiId: 7,
+    title: 'A Storm of Swords',
+    seriesNumber: 'A Song Of Ice and Fire #3',
+    author: 'George R.R. Martin',
+    datePublished: 2000,
+    numOfPages: 992,
+    coverImage: 'https://images.gr-assets.com/books/1427886300l/11133581.jpg'
+  },
+  {
+    apiId: 9,
+    title: 'A Feast for Crows',
+    seriesNumber: 'A Song Of Ice and Fire #4',
+    author: 'George R.R. Martin',
+    datePublished: 2005,
+    numOfPages: 748,
+    coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+  },
+  {
+    apiId: 10,
+    title: 'A Storm of Swords',
+    seriesNumber: 'A Song Of Ice and Fire #3',
+    author: 'George R.R. Martin',
+    datePublished: 2000,
+    numOfPages: 992,
+    coverImage: 'https://images.gr-assets.com/books/1427886300l/11133581.jpg'
+  },
+  {
+    apiId: 11,
+    title: 'A Feast for Crows',
+    seriesNumber: 'A Song Of Ice and Fire #4',
+    author: 'George R.R. Martin',
+    datePublished: 2005,
+    numOfPages: 748,
+    coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+  },
+  {
+    apiId: 12,
+    title: 'A Dance with Dragons',
+    seriesNumber: 'A Song Of Ice and Fire #5',
+    author: 'George R.R. Martin',
+    datePublished: 2011,
+    numOfPages: 1040,
+    coverImage: 'https://images.gr-assets.com/books/1327885335l/10664113.jpg'
+  }
+];
 const initialState = {
   bookInfo: {},
   allHouses: {},

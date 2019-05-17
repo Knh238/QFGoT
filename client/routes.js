@@ -12,7 +12,9 @@ import {
   HousesRegion,
   HousesName,
   HousesRegionDetail,
-  SingleHouseInfo
+  SingleHouseInfo,
+  MainTexts,
+  MinorTexts
 } from './components';
 
 export default class Routes extends Component {
@@ -20,8 +22,8 @@ export default class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/AllBooks" component={AllBooks} />
-        <Route exact path="/FindBooks" component={FindBooks} />
+        <Route exact path="/MainTexts" component={MainTexts} />
+        <Route exact path="/MinorTexts" component={MinorTexts} />
         <Route exact path="/SingleBook" component={SingleBook} />
         <Route exact path="/HousesByRegion" component={HousesRegion} />
         <Route exact path="/HousesInRegion" component={HousesRegionDetail} />

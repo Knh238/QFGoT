@@ -105,10 +105,25 @@ class NavDrawer extends React.Component {
               </ListItemIcon>
               <ListItemText primary="Books" />
             </ListItem>
-            <ListItem inset button key="major works">
+            <ListItem
+              inset
+              button
+              key="major works"
+              component={Link}
+              to={{
+                pathname: '/MainTexts'
+              }}
+            >
               <ListItemText inset primary="Novels" />
             </ListItem>
-            <ListItem button key="minor texts">
+            <ListItem
+              button
+              key="minor texts"
+              component={Link}
+              to={{
+                pathname: '/MinorTexts'
+              }}
+            >
               <ListItemText inset primary="Other works" />
             </ListItem>
           </List>

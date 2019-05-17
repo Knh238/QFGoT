@@ -50,113 +50,108 @@ class MainTexts extends React.Component {
       houseList: {},
       currentPage: 1
     };
-    this.loadNextHouses = this.loadNextHouses.bind(this);
-    this.loadPrevHouses = this.loadPrevHouses.bind(this);
+    this.renderBooks = this.renderBooks.bind(this);
   }
 
   componentDidMount() {
     const self = this;
-    const currPage = this.state.currentPage;
-    const allHouses = this.props.allHouses;
+    // const currPage = this.state.currentPage;
+    // const allHouses = this.props.allHouses;
 
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, houseList: allHouses });
-      });
+    // return axios
+    //   .get(
+    //     `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
+    //   )
+    //   .then(function(res) {
+    //     self.setState({ housesArr: res.data, houseList: allHouses });
+    //   });
   }
-
-  renderRegions() {
-    const allHouses = this.props.allHouses;
-    return this.state.housesArr.map(house => (
+  //   {
+  //     apiId: 5,
+  //     title: 'A Feast for Crows',
+  //     seriesNumber: 'A Song Of Ice and Fire #4',
+  //     author: 'George R.R. Martin',
+  //     datePublished: 2005,
+  //     numOfPages: 748,
+  //     coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+  //   },
+  renderBooks() {
+    const mainBooks = this.props.mainBooksArr;
+    console.log('main books arr', mainBooks);
+    return mainBooks.map(book => (
       <Card
         style={{
           width: '40%'
         }}
-        key={house.name}
+        key={book.apiId}
       >
+        <CardContent>
+          <CardMedia
+            component="img"
+            // style={{ height: '40%', width: '20%' }}
+            image={book.coverImage}
+            title="key"
+          />
+        </CardContent>
         <CardContent>
           <Typography
             variant="h2"
             style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
-            {house.name}
+            {book.title}
+          </Typography>
+          <Typography
+            variant="h3"
+            style={{ fontFamily: 'Marck Script,cursive' }}
+            align="center"
+          >
+            {book.seriesNumber}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography
             variant="h4"
-            style={{
-              fontFamily: 'Marck Script,cursive'
-            }}
+            style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
-            {house.coatOfArms.length ? house.coatOfArms : null}
+            author: {book.author}
           </Typography>
-        </CardContent>
-
-        {house.seats.length > 1 ? (
-          <CardContent>
-            <Typography
-              variant="h4"
-              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-              align="center"
-            >
-              Seat:
-              {house.seats}
-            </Typography>
-          </CardContent>
-        ) : null}
-        <CardContent>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
-            Region: {house.region}
+            pages: {book.numOfPages}
           </Typography>
-        </CardContent>
-        <CardContent>
           <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
-            {house.currentlord}
+            published:{book.datePublished}
           </Typography>
-        </CardContent>
-        <CardContent>
-          {/* <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.overlord.slice(45)}
-          </Typography> */}
-          {this.renderOverlord(house.overlord)}
         </CardContent>
       </Card>
     ));
   }
   render() {
     const { classes } = this.props;
-    // console.log('this state house is', this.state.housesArr);
-    console.log('this state house all houses ', this.props.allHouses);
+
     return (
       <div>
-        <div
-          style={{
-            marginLeft: '10%',
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center'
-          }}
-        >
-          {this.state.housesArr ? this.renderRegions() : null}
+        <div>
+          <Card>
+            <CardContent>
+              <Typography
+                variant="h4"
+                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+                align="center"
+              >
+                major works in series to date
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
         <div
           style={{
@@ -167,44 +162,8 @@ class MainTexts extends React.Component {
             marginTop: 5
           }}
         >
-          <Card>
-            <CardContent>
-              <Typography
-                variant="h4"
-                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-                align="center"
-              >
-                current page: {this.state.currentPage} of 23
-              </Typography>
-            </CardContent>
-            <CardContent align="center">
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#54bd9f',
-                  fontFamily: 'Uncial Antiqua, cursive',
-                  marginRight: 10
-                }}
-                align="center"
-                onClick={this.loadPrevHouses}
-              >
-                <KeyboardArrowLeftIcon />
-                previous 20
-              </Button>
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#54bd9f',
-                  fontFamily: 'Uncial Antiqua, cursive'
-                }}
-                align="center"
-                onClick={this.loadNextHouses}
-              >
-                next 20
-                <KeyboardArrowRightIcon />
-              </Button>
-            </CardContent>
-          </Card>
+          {this.renderBooks()}
+          {/* https://www.goodreads.com/series/43790-a-song-of-ice-and-fire */}
         </div>
       </div>
     );
