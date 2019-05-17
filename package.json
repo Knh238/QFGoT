@@ -13,14 +13,10 @@
     "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
     "postinstall": "touch secrets.js",
     "start": "node server",
-    "start-dev":
-      "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
-    "start-server":
-      "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test":
-      "NODE_ENV='test' mocha \"./server/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
-
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
@@ -33,7 +29,7 @@
     "express-session": "^1.15.1",
     "firebase": "^5.8.3",
     "history": "^4.6.3",
-    "morgan": "^1.8.1",
+    "morgan": "^1.9.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
@@ -47,12 +43,12 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.10.2",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^4.38.0",
+    "sequelize": "^5.3.0",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "7.0.0-beta.54",
     "@babel/plugin-proposal-export-namespace-from": "7.0.0-beta.54",
     "@babel/plugin-proposal-function-sent": "7.0.0-beta.54",
@@ -62,15 +58,15 @@
     "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.54",
     "@babel/plugin-syntax-import-meta": "7.0.0-beta.54",
     "@babel/polyfill": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0-beta.55",
     "@babel/register": "^7.0.0-beta.55",
     "axios-mock-adapter": "^1.15.0",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.0-beta.4",
     "chai": "^3.5.0",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
     "eslint": "^4.19.1",
     "eslint-config-fullstack": "^5.1.0",
     "eslint-config-prettier": "^2.9.0",

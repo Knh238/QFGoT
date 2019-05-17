@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getBookList } from '../store/booksReducer';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
@@ -37,16 +37,22 @@ const styles = theme => ({
   }
 });
 
-class HousesRegion extends React.Component {
+class HousesRegionDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchType: '', searchTerm: '', error: '' };
+    this.state = { housesArr: [], region: '' };
   }
 
   componentDidMount() {
-    this.setState({ books: this.props.bookList });
+    const self = this;
+    //props state = region
+    const currRegion = this.state.currentRegion;
+    return axios
+      .get(`https://www.anapioficeandfire.com/api/houses?region=${currRegion}`)
+      .then(function(res) {
+        self.setState({ housesArr: res.data });
+      });
   }
-
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
@@ -168,9 +174,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-HousesRegion.propTypes = {
+HousesRegionDetail.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesRegion)
+  withStyles(styles, { withTheme: true })(HousesRegionDetail)
 );
