@@ -108,6 +108,27 @@ class MinorTexts extends React.Component {
             type: {book.mediaType}
           </Typography>
         </CardContent>
+        <CardContent align="center">
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#2d3258',
+              fontFamily: 'Pirata One, cursive',
+              fontSize: 40,
+              color: 'white'
+            }}
+            component={Link}
+            to={{
+              pathname: '/CharsByBook',
+              state: {
+                bookId: book.apiId,
+                bookTitle: book.title
+              }
+            }}
+          >
+            characters in this book
+          </Button>
+        </CardContent>
       </Card>
     ));
   }
@@ -117,7 +138,7 @@ class MinorTexts extends React.Component {
     return (
       <div>
         <div>
-          <Card>
+          <Card style={{ backgroundColor: '#080e28' }}>
             <CardContent>
               <Typography
                 variant="h2"
@@ -139,8 +160,32 @@ class MinorTexts extends React.Component {
           }}
         >
           {this.renderBooks()}
-          {/* https://www.goodreads.com/series/43790-a-song-of-ice-and-fire */}
         </div>
+        <Card style={{ backgroundColor: '#dab239' }}>
+          <CardContent
+            style={{
+              border: 2,
+              borderColor: 'white'
+            }}
+          >
+            <Typography
+              variant="h2"
+              style={{
+                fontFamily: 'Pirata One, cursive',
+                color: '#2d3258'
+              }}
+              align="center"
+            >
+              Read more @
+              <a
+                target="_blank"
+                href="https://www.goodreads.com/series/43790-a-song-of-ice-and-fire"
+              >
+                Goodreads
+              </a>
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }

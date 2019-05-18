@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const compression = require('compression');
-const db = require('./db');
+// const db = require('./db');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -21,8 +21,6 @@ const createApp = () => {
   app.use(express.urlencoded({ extended: true }));
 
   app.use(compression());
-
-  app.use('/videos', require('./api'));
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -49,13 +47,14 @@ const createApp = () => {
 
 const startListening = () => {
   const server = app.listen(PORT, () =>
-    console.log(`Mixing it up on port ${PORT}`));
+    console.log(`Mixing it up on port ${PORT}`)
+  );
 };
 
-const syncDb = () => db.sync();
+// s
 
 async function bootApp() {
-  await syncDb();
+  // await syncDb();
   await createApp();
   await startListening();
 }

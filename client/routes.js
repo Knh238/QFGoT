@@ -14,7 +14,8 @@ import {
   MinorTexts,
   CharsByCulture,
   CultureDetail,
-  CharsByGender
+  CharsByGender,
+  BookChars
 } from './components';
 
 export default class Routes extends Component {
@@ -30,6 +31,7 @@ export default class Routes extends Component {
         <Route exact path="/IndividualHouse" component={SingleHouseInfo} />
         <Route exact path="/AllCultures" component={CharsByCulture} />
         <Route exact path="/CharsByGender" component={CharsByGender} />
+        <Route exact path="/CharsByBook" component={BookChars} />
         <Route exact path="/CultureDetail" component={CultureDetail} />
       </Switch>
     );

@@ -51,24 +51,8 @@ class MainTexts extends React.Component {
       currentPage: 1
     };
     this.renderBooks = this.renderBooks.bind(this);
-    this.renderCharacters = this.renderCharacters.bind(this);
   }
-  renderCharacters(charArr) {
-    const allChars = this.props.allChars;
-    const bookChars = [];
-    charArr.forEach(char => bookChars.push(allChars[char.slice(49)].name));
-    if (bookChars.length > 1) {
-      return bookChars.map(person => (
-        <Typography
-          variant="h5"
-          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-          align="center"
-        >
-          {person}
-        </Typography>
-      ));
-    }
-  }
+
   renderBooks() {
     const mainBooks = this.props.mainBooksArr;
     console.log('main books arr', mainBooks);
@@ -89,12 +73,7 @@ class MainTexts extends React.Component {
           </Typography>
         </CardContent>
         <CardContent>
-          <CardMedia
-            component="img"
-            // style={{ height: '40%', width: '20%' }}
-            image={book.coverImage}
-            title="key"
-          />
+          <CardMedia component="img" image={book.coverImage} title="key" />
         </CardContent>
         <CardContent>
           <Typography
@@ -128,17 +107,26 @@ class MainTexts extends React.Component {
             published: {book.datePublished}
           </Typography>
         </CardContent>
-        <CardContent>
-          <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
-            align="center"
+        <CardContent align="center">
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#2e4b77',
+              fontFamily: 'Pirata One, cursive',
+              fontSize: 40,
+              color: 'white'
+            }}
+            component={Link}
+            to={{
+              pathname: '/CharsByBook',
+              state: {
+                bookId: book.apiId,
+                bookTitle: book.title
+              }
+            }}
           >
-            features characters:
-          </Typography>
-          {/* {book.characters.length > 1 */}
-          {this.renderCharacters(book.characters)}
-          {/* : null} */}
+            characters in this book
+          </Button>
         </CardContent>
       </Card>
     ));
@@ -149,7 +137,7 @@ class MainTexts extends React.Component {
     return (
       <div>
         <div>
-          <Card>
+          <Card style={{ backgroundColor: '#080e28' }}>
             <CardContent>
               <Typography
                 variant="h2"
@@ -171,8 +159,32 @@ class MainTexts extends React.Component {
           }}
         >
           {this.renderBooks()}
-          {/* https://www.goodreads.com/series/43790-a-song-of-ice-and-fire */}
         </div>
+        <Card style={{ backgroundColor: '#dab239' }}>
+          <CardContent
+            style={{
+              border: 2,
+              borderColor: 'white'
+            }}
+          >
+            <Typography
+              variant="h2"
+              style={{
+                fontFamily: 'Pirata One, cursive',
+                color: '#2d3258'
+              }}
+              align="center"
+            >
+              Read more @
+              <a
+                target="_blank"
+                href="https://www.goodreads.com/series/43790-a-song-of-ice-and-fire"
+              >
+                Goodreads
+              </a>
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }

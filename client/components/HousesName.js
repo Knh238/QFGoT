@@ -155,10 +155,15 @@ class HousesName extends React.Component {
         }}
         key={house.name}
       >
-        <CardContent>
+        <CardContent
+          style={{
+            backgroundColor: '#22949f',
+            marginRight: 2
+          }}
+        >
           <Typography
             variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
             {house.name}
@@ -229,11 +234,11 @@ class HousesName extends React.Component {
 
     return (
       <Paper>
-        <Card>
+        <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
               variant="h1"
-              style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
+              style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
               Houses By Name

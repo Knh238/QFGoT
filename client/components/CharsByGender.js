@@ -45,6 +45,8 @@ class CharsByGender extends React.Component {
     this.state = { charsArr: [], currentPage: 1 };
     this.loadNextHouses = this.loadNextHouses.bind(this);
     this.loadPrevHouses = this.loadPrevHouses.bind(this);
+    this.renderBooks = this.renderBooks.bind(this);
+    this.renderTVList = this.renderTVList.bind(this);
   }
 
   componentDidMount() {
@@ -86,6 +88,42 @@ class CharsByGender extends React.Component {
         self.setState({ charsArr: res.data, currentPage: newPage });
       });
   }
+
+  renderBooks(booksStr) {
+    const charsArr = this.state.charsArr;
+    const bookList = this.props.bookList;
+    const appearsInBooks = [];
+    const bookIds = booksStr.map(item => item.slice(44));
+    console.log('book ids', bookIds);
+    if (bookIds.length > 1) {
+      return bookIds.map(id => (
+        <CardContent>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+          >
+            {bookList[id].title}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
+
+  renderTVList(seasons) {
+    if (seasons.length > 1) {
+      return seasons.map(season => (
+        <CardContent>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+          >
+            {season}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
+
   renderChars() {
     const charsArr = this.state.charsArr;
     return charsArr.map(person => (
@@ -160,7 +198,7 @@ class CharsByGender extends React.Component {
               variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             >
-              Featured in: {person.tvSeries}
+              Featured in: {this.renderTVList(person.tvSeries)}
             </Typography>
             <Typography
               variant="h3"
@@ -175,11 +213,11 @@ class CharsByGender extends React.Component {
           <CardContent>
             <Typography
               variant="h4"
-              style={{ fontFamily: 'Pirata One, cursive' }}
+              style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             >
-              Appears in: {person.books}
-              {/* books.slice(44) would give us just the number */}
+              Appears in Books:
             </Typography>
+            {this.renderBooks(person.books)}
           </CardContent>
         ) : null}
       </Card>
@@ -187,10 +225,10 @@ class CharsByGender extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    const cultureName = this.props.location.state.cultureName;
+    const cultureName = this.props.location.state.gender;
     return (
       <Paper>
-        <Card>
+        <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
               variant="h1"
@@ -269,25 +307,16 @@ class CharsByGender extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    bookList: state.bookList,
+    bookList: state.allBooks,
     allHouses: state.allHouses,
     regionsArr: state.regionsArr,
     allCutlures: state.allCutlures
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getBookList: id => dispatch(getBookList(id))
-  };
-};
-
 CharsByGender.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps, null)(
   withStyles(styles, { withTheme: true })(CharsByGender)
 );
-
-//men - 34
-//women its 10

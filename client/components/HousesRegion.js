@@ -92,7 +92,7 @@ class HousesRegion extends React.Component {
     console.log('this state houses fulll list', this.props.allHouses);
     return (
       <Paper>
-        <Card>
+        <Card style={{ backgroundColor: '#080e28' }}>
           <CardContent align="center">
             <Typography
               variant="h1"
@@ -102,20 +102,19 @@ class HousesRegion extends React.Component {
               Houses By Region
             </Typography>
           </CardContent>
+        </Card>
+        <Card>
           <CardContent align="center">
             <CardMedia
               component="img"
-              style={{ height: '40%', width: '20%' }}
-              image={
-                'https://i.pinimg.com/564x/f2/eb/e5/f2ebe540d30a8c006be97627f2859b0b.jpg'
-              }
+              style={{ height: '50%', width: '40%' }}
+              image={'https://iv1.lisimg.com/image/7808977/740full.jpg'}
               title="key"
             />
           </CardContent>
         </Card>
         <div
           style={{
-            // marginLeft: '10%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',

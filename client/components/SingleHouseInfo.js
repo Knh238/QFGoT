@@ -88,13 +88,15 @@ class SingleHouseInfo extends React.Component {
     }
   }
   renderHouse() {
-    // const currHouse = this.props.location.state.houseId;
     return this.state.currHouse ? (
       <Card>
         <CardContent>
           <Typography
             variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive' }}
+            style={{
+              fontFamily: 'Pirata One, cursive',
+              color: '#dab239'
+            }}
             align="center"
           >
             {this.state.currHouse.name}

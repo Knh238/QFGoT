@@ -158,7 +158,7 @@ class HousesRegionDetail extends React.Component {
     const regionImg = this.props.location.state.regionImg;
     return (
       <Paper>
-        <Card>
+        <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
               variant="h1"
@@ -168,10 +168,12 @@ class HousesRegionDetail extends React.Component {
               The Houses of {regionName}
             </Typography>
           </CardContent>
+        </Card>
+        <Card>
           <CardContent align="center">
             <CardMedia
               component="img"
-              style={{ height: '50%', width: '30%' }}
+              style={{ height: '50%', width: '40%' }}
               image={regionImg}
               title="key"
             />

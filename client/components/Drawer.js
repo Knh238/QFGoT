@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: '#2d3258'
+    backgroundColor: '#2e4b77'
   },
   drawer: {
     width: drawerWidth,
@@ -184,9 +184,7 @@ class NavDrawer extends React.Component {
             >
               <ListItemText inset primary="By Culture" />
             </ListItem>
-            {/* <ListItem button key="by gender">
-              <ListItemText inset primary="By Gender" />
-            </ListItem> */}
+
             <ListItem
               button
               key="by gender"

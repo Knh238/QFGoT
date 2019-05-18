@@ -8,4 +8,5 @@ export { default as MinorTexts } from './MinorTexts';
 export { default as CharsByCulture } from './CharsByCulture';
 export { default as CharsByGender } from './CharsByGender';
 export { default as CultureDetail } from './CultureDetail';
+export { default as BookChars } from './BookChars';
 export { default as NavDrawer } from './Drawer';
