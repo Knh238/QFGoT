@@ -103,7 +103,7 @@ class CharsByCulture extends React.Component {
         <div
           style={{
             display: 'flex',
-            marginLeft: '10%',
+            marginLeft: '15%',
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center'

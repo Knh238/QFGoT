@@ -181,7 +181,7 @@ class SingleHouseInfo extends React.Component {
       <div>
         <div
           style={{
-            marginLeft: '10%',
+            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
