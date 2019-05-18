@@ -1,5 +1,5 @@
 // import history from '../history';
-import booksData from './bookInfo';
+
 import axios from 'axios';
 
 const GOT_HOUSE_LIST = 'GOT_HOUSE_LIST';
