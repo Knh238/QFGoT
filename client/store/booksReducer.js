@@ -93,9 +93,73 @@ export const getHouseList = () => dispatch => {
 };
 
 export const getCharList = () => dispatch => {
-  const list = booksData;
-  dispatch(gotCharList(list));
+  const allCharsMap = {};
+  //43 pages to get  by going through 50 eahc time
+
+  for (let i = 1; i <= 43; i++) {
+    axios
+      .get(
+        `https://www.anapioficeandfire.com/api/characters?page=${i}&pageSize=50`
+      )
+      .then(function(res) {
+        const housesData = res.data;
+
+        const houseArr1 = housesData.forEach(
+          house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+        );
+      });
+  }
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData = res.data;
+
+  //     const houseArr1 = housesData.forEach(
+  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData2 = res.data;
+
+  //     const houseArr2 = housesData2.forEach(
+  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData3 = res.data;
+
+  //     const houseArr3 = housesData3.forEach(
+  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData4 = res.data;
+
+  //     const houseArr4 = housesData4.forEach(
+  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+  // axios
+  //   .get('https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData5 = res.data;
+
+  //     const houseArr5 = housesData5.forEach(
+  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+
+  console.log('charactersmap arrr is ', allCharsMap);
+  dispatch(gotAllChars(allCharsMap));
 };
+
 const regionsArr = [
   {
     name: 'Dorne',
@@ -284,6 +348,7 @@ const initialState = {
   bookInfo: {},
   allHouses: {},
   allChars: {},
+  charsLoaded: false,
   charsInBook: [],
   charInfo: {},
   allCultures,
@@ -304,7 +369,8 @@ const booksReducer = (state = initialState, action) => {
     case GOT_ALL_CHARS:
       return {
         ...state,
-        allChars: action.allChars
+        allChars: action.allChars,
+        charsLoaded: true
       };
     case GOT_CHAR_BIO:
       return {

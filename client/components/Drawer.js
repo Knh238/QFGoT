@@ -18,7 +18,7 @@ import SecurityIcon from '@material-ui/icons/Security';
 import BookIcon from '@material-ui/icons/Book';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import HomeIcon from '@material-ui/icons/Home';
-import { getHouseList } from '../store/booksReducer';
+import { getHouseList, getCharList } from '../store/booksReducer';
 import { connect } from 'react-redux';
 
 const drawerWidth = 240;
@@ -52,7 +52,13 @@ class NavDrawer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getHouseList();
+    if (!this.props.charsLoaded) {
+      this.props.getCharList();
+    }
+    // if(!this.props.charsLoaded){
+    //   this.props.getCharList();
+    // }
+    // this.props.getHouseList();
   }
 
   render() {
@@ -208,9 +214,6 @@ class NavDrawer extends React.Component {
             >
               <ListItemText inset primary="Male Chars" />
             </ListItem>
-            <ListItem button key="by book">
-              <ListItemText inset primary="By Book" />
-            </ListItem>
           </List>
         </Drawer>
       </div>
@@ -221,13 +224,16 @@ class NavDrawer extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allHouses: state.allHouses
+    allHouses: state.allHouses,
+    allChars: state.allChars,
+    charsLoaded: state.charsLoaded
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getHouseList: () => dispatch(getHouseList())
+    getHouseList: () => dispatch(getHouseList()),
+    getCharList: () => dispatch(getCharList())
   };
 };
 
