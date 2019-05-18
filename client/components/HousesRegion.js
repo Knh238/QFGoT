@@ -111,6 +111,7 @@ class HousesRegion extends React.Component {
         <div
           style={{
             display: 'flex',
+            marginLeft: '10%',
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center'
