@@ -50,7 +50,6 @@ class CharsByCulture extends React.Component {
         style={{
           width: '20%'
         }}
-        transparent
         key={culture}
       >
         <CardContent align="center">
@@ -59,7 +58,7 @@ class CharsByCulture extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 35,
+              fontSize: 25,
               color: 'white',
               borderRadius: 15
             }}
@@ -79,7 +78,7 @@ class CharsByCulture extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log('this state houses fulll list', this.props.allCultures);
+
     return (
       <Paper>
         <Card>

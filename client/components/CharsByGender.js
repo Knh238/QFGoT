@@ -199,7 +199,6 @@ class CharsByGender extends React.Component {
       <Card
         style={{
           width: '30%',
-          marginRight: 5,
           marginTop: 10
         }}
         raised={true}
