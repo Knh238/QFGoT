@@ -69,15 +69,18 @@ class BookChars extends React.Component {
         }}
         key={person}
       >
-        <CardContent align="center">
-          <Typography
-            variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
-            align="center"
-          >
-            {allChars[person] ? allChars[person].name || '' : null}
-          </Typography>
-        </CardContent>
+        {person !== '' ? (
+          <CardContent align="center">
+            {/* <Button color:color: '#54bd9f'/> */}
+            <Typography
+              variant="h2"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
+              align="center"
+            >
+              {allChars[person] ? allChars[person].name || '' : null}
+            </Typography>
+          </CardContent>
+        ) : null}
       </Card>
     ));
   }
@@ -116,19 +119,7 @@ class BookChars extends React.Component {
             justifyContent: 'center',
             marginTop: 5
           }}
-        >
-          <Card>
-            <CardContent>
-              <Typography
-                variant="h4"
-                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-                align="center"
-              >
-                stuff
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
+        />
       </Paper>
     );
   }

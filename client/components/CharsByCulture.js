@@ -59,8 +59,9 @@ class CharsByCulture extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 45,
-              color: 'white'
+              fontSize: 55,
+              color: 'white',
+              borderRadius: 15
             }}
             component={Link}
             to={{
@@ -82,7 +83,7 @@ class CharsByCulture extends React.Component {
     return (
       <Paper>
         <Card>
-          <CardContent align="center">
+          <CardContent align="center" style={{ backgroundColor: '#2d3258' }}>
             <Typography
               variant="h1"
               style={{ fontFamily: 'Pirata One, cursive' }}

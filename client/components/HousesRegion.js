@@ -47,12 +47,6 @@ class HousesRegion extends React.Component {
     this.setState({ houseList: this.props.allHouses });
   }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
-
   renderRegions() {
     const regionsArr = this.props.regionsArr;
     return regionsArr.map(region => (
@@ -69,8 +63,9 @@ class HousesRegion extends React.Component {
             style={{
               backgroundColor: '#22949f',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 45,
-              color: 'white'
+              fontSize: 55,
+              color: 'white',
+              borderRadius: 15
             }}
             component={Link}
             to={{

@@ -132,7 +132,6 @@ class HousesRegionDetail extends React.Component {
         <CardContent align="center">
           <Button
             variant="contained"
-            // size="large"
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Uncial Antiqua, cursive',

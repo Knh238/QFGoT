@@ -42,7 +42,7 @@ const gotBookInfo = bookInfo => ({
 export const getHouseList = () => dispatch => {
   const houseMap = {};
 
-  for (let h = 1; h < 9; h++) {
+  for (let h = 1; h <= 9; h++) {
     grabHouses(h);
   }
   function grabHouses(num) {

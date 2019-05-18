@@ -22,33 +22,44 @@ class Home extends React.Component {
           marginRight: 'auto'
         }}
       >
-        <Typography
-          variant="h1"
-          style={{ fontFamily: 'Pirata One, cursive' }}
-          align="center"
-        >
-          Winter is coming
-        </Typography>
-        <Typography
-          variant="h3"
-          style={{ fontFamily: 'Marck Script,cursive', marginTop: 10 }}
-          align="center"
-        >
-          ....But that 6th book aint!
-        </Typography>
-        <Typography
-          variant="h5"
-          style={{ fontFamily: 'Marck Script,cursive', marginTop: 10 }}
-          align="center"
-        >
-          #SHADE
-        </Typography>
+        <CardContent style={{ backgroundColor: '#54bd9f' }}>
+          <Typography
+            variant="h1"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+            align="center"
+          >
+            Winter is coming
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography
+            variant="h2"
+            style={{
+              fontFamily: 'Marck Script,cursive',
+              marginTop: 10,
+              color: '#dab239'
+            }}
+            align="center"
+          >
+            ....But that 6th book aint!
+          </Typography>
+          <Typography
+            variant="h3"
+            style={{
+              fontFamily: 'Marck Script,cursive',
+              marginTop: 10,
+              color: '#22949f'
+            }}
+            align="center"
+          >
+            #SHADE
+          </Typography>
+        </CardContent>
 
         <CardContent align="center">
           <CardMedia
             component="img"
             style={{ height: '50%', width: '50%' }}
-            // image="https://cdn130.picsart.com/270704750020201.jpg?c480x480"
             image="https://cdn131.picsart.com/294876470053201.jpg?c480x480"
             title="books"
           />

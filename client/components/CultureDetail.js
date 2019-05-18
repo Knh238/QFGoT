@@ -56,47 +56,129 @@ class CultureDetail extends React.Component {
         self.setState({ charsArr: res.data });
       });
   }
+  renderBooks(booksStr) {
+    const bookList = this.props.bookList;
+    const bookIds = booksStr.map(item => item.slice(44));
+    if (bookIds.length > 1) {
+      return bookIds.map(id => (
+        <CardContent align="center" key={id}>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+          >
+            {bookList[id].title}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
+
+  renderTVList(seasons) {
+    if (seasons.length > 1) {
+      return seasons.map(season => (
+        <CardContent align="center" key={season}>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+          >
+            {season}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
+  renderHouse(houses) {
+    const allHouses = this.props.allHouses;
+    const houseIds = houses.map(item => item.slice(45));
+    if (houseIds.length > 1) {
+      return houseIds.map(house => (
+        <CardContent key={house}>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#22949f',
+              fontFamily: 'Uncial Antiqua, cursive',
+              fontWeight: 'bold'
+            }}
+            component={Link}
+            to={{
+              pathname: '/IndividualHouse',
+              state: {
+                houseId: house
+              }
+            }}
+          >
+            {allHouses[house].name}
+          </Button>
+        </CardContent>
+      ));
+    }
+  }
+  renderAlias(aliases) {
+    if (aliases.length > 1) {
+      return aliases.map(alias => (
+        <CardContent align="center" key={alias}>
+          <Typography
+            variant="h3"
+            style={{
+              fontFamily: 'Marck Script,cursive',
+              color: '#dab239'
+            }}
+          >
+            {alias}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
+  renderTitles(titles) {
+    if (titles.length > 1) {
+      return titles.map(title => (
+        <CardContent key={title}>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
+          >
+            {title}
+          </Typography>
+        </CardContent>
+      ));
+    }
+  }
 
   renderChars() {
     const charsArr = this.state.charsArr;
     return charsArr.map(person => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          backgroundColor: '#080e28',
+          marginRight: 2
         }}
         key={person.name}
       >
-        <CardContent align="center">
+        <CardContent align="center" style={{ backgroundColor: '#2d3258' }}>
           <Typography
             variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
+            style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
             {person.name}
           </Typography>
         </CardContent>
-        <CardContent align="center">
-          {person.titles.length > 1 ? (
+
+        {person.aliases.length > 1 ? (
+          <CardContent>
             <Typography
-              variant="h3"
-              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+              variant="h4"
               align="center"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             >
-              {person.titles}
+              also known as:
             </Typography>
-          ) : null}
-        </CardContent>
-        <CardContent align="center">
-          {person.aliases.length > 1 ? (
-            <Typography
-              variant="h3"
-              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
-              align="center"
-            >
-              {person.aliases}
-            </Typography>
-          ) : null}
-        </CardContent>
+            {this.renderAlias(person.aliases)}
+          </CardContent>
+        ) : null}
         <CardContent>
           <Typography
             variant="h4"
@@ -105,54 +187,86 @@ class CultureDetail extends React.Component {
             {person.gender}
           </Typography>
         </CardContent>
-
         <CardContent>
           {person.born.length > 1 ? (
-            <Typography
-              variant="h4"
-              style={{ fontFamily: 'Pirata One, cursive' }}
-            >
+            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
               Born: {person.born}
             </Typography>
           ) : null}
           {person.died.length > 1 ? (
-            <Typography
-              variant="h4"
-              style={{ fontFamily: 'Pirata One, cursive' }}
-            >
+            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
               Died: {person.died}
             </Typography>
           ) : null}
         </CardContent>
-
-        {person.tvSeries.length > 1 ? (
-          <CardContent>
-            <Typography
-              variant="h3"
-              style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
-            >
-              Featured in: {person.tvSeries}
-            </Typography>
-            <Typography
-              variant="h3"
-              style={{ fontFamily: 'Marck Script,cursive', color: '#22949f' }}
-              align="center"
-            >
-              Played By: {person.playedBy}
-            </Typography>
-          </CardContent>
-        ) : null}
-        {person.books.length > 1 ? (
+        {person.titles.length > 1 ? (
           <CardContent>
             <Typography
               variant="h4"
-              style={{ fontFamily: 'Pirata One, cursive' }}
+              style={{
+                fontFamily: 'Pirata One, cursive',
+                color: '#22949f'
+              }}
             >
-              Appears in: {person.books}
-              {/* books.slice(44) would give us just the number */}
+              Titles:
+            </Typography>
+            {this.renderTitles(person.titles)}
+          </CardContent>
+        ) : null}
+        {person.tvSeries.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Pirata One, cursive',
+                color: '#22949f'
+              }}
+            >
+              Featured in TV Series:
+            </Typography>
+            {this.renderTVList(person.tvSeries)}
+            <Typography
+              align="center"
+              variant="h3"
+              style={{
+                fontFamily: 'Pirata One, cursive',
+                color: '#54bd9f'
+              }}
+            >
+              Played By:
+            </Typography>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+              align="center"
+            >
+              {person.playedBy}
             </Typography>
           </CardContent>
         ) : null}
+        {person.allegiances.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
+            >
+              Allied With:
+            </Typography>
+            {this.renderHouse(person.allegiances)}
+          </CardContent>
+        ) : null}
+        <CardContent alignSelf="flex-end">
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: 'Signika',
+              float: 'right',
+              fontWeight: 'bold'
+            }}
+          >
+            api id: {person.url.slice(49)}
+          </Typography>
+        </CardContent>
       </Card>
     ));
   }
@@ -162,7 +276,7 @@ class CultureDetail extends React.Component {
     return (
       <Paper>
         <Card>
-          <CardContent align="center">
+          <CardContent align="center" style={{ backgroundColor: '#080e28' }}>
             <Typography
               variant="h1"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}

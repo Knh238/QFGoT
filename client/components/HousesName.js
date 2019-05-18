@@ -71,28 +71,37 @@ class HousesName extends React.Component {
   }
 
   loadNextHouses() {
-    const newPage = (this.state.currentPage += 1);
-    //add error handling so it wont go above 24
     const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
-      });
+    let oldPage = this.state.currentPage;
+
+    if (oldPage === 23) {
+      return;
+    } else {
+      let newPage = oldPage++;
+      return axios
+        .get(
+          `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
+        )
+        .then(function(res) {
+          self.setState({ housesArr: res.data, currentPage: newPage });
+        });
+    }
   }
   loadPrevHouses() {
-    const newPage = (this.state.currentPage -= 1);
-    //add error handling so it wont go below or to 0
     const self = this;
-    return axios
-      .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
-      )
-      .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
-      });
+    let currPage = this.state.currentPage;
+    if (currPage === 1) {
+      return;
+    } else {
+      let newCurrPage = currPage--;
+      return axios
+        .get(
+          `https://www.anapioficeandfire.com/api/houses?page=${newCurrPage}&pageSize=20`
+        )
+        .then(function(res) {
+          self.setState({ housesArr: res.data, currentPage: newPage });
+        });
+    }
   }
 
   renderMembers(members) {
@@ -102,9 +111,10 @@ class HousesName extends React.Component {
     if (allMems.length > 1) {
       return allMems.map(person => (
         <Typography
-          variant="h5"
-          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          key={person}
           align="center"
+          variant="h4"
+          style={{ fontFamily: 'Marck Script,cursive', color: '#22949f' }}
         >
           {person}
         </Typography>
@@ -120,15 +130,16 @@ class HousesName extends React.Component {
       const overlordName = allHouses[overlordStr].name;
       return (
         <CardContent align="center">
-          <Typography
-            variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
-          >
-            overlord:
-          </Typography>
           <Button
+            align="center"
             variant="contained"
-            style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
+            style={{
+              backgroundColor: '#dab239',
+              fontFamily: 'Uncial Antiqua, cursive',
+              fontSize: 25,
+              alignSelf: 'center',
+              color: 'white'
+            }}
             component={Link}
             to={{
               pathname: '/IndividualHouse',
@@ -146,7 +157,6 @@ class HousesName extends React.Component {
     }
   }
   renderRegions() {
-    const allHouses = this.props.allHouses;
     const allChars = this.props.allChars;
     return this.state.housesArr.map(house => (
       <Card
@@ -169,26 +179,45 @@ class HousesName extends React.Component {
             {house.name}
           </Typography>
         </CardContent>
-        <CardContent>
-          <Typography
-            variant="h4"
-            style={{
-              fontFamily: 'Marck Script,cursive'
-            }}
-            align="center"
-          >
-            {house.coatOfArms.length ? house.coatOfArms : null}
-          </Typography>
-        </CardContent>
+        {house.coatOfArms.length ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Uncial Antiqua, cursive'
+              }}
+            >
+              coat of arms:
+            </Typography>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Marck Script,cursive',
+                color: '#22949f'
+              }}
+              align="center"
+            >
+              {house.coatOfArms}
+            </Typography>
+          </CardContent>
+        ) : null}
 
         {house.seats.length > 1 ? (
           <CardContent>
             <Typography
               variant="h4"
               style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            >
+              House Seats:
+            </Typography>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Uncial Antiqua, cursive',
+                color: '#54bd9f'
+              }}
               align="center"
             >
-              Seat:
               {house.seats}
             </Typography>
           </CardContent>
@@ -197,35 +226,62 @@ class HousesName extends React.Component {
           <Typography
             variant="h4"
             style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
           >
-            Region: {house.region}
+            Region:
           </Typography>
-        </CardContent>
-        <CardContent>
-          {house.currentLord.length > 1 ? (
-            <Typography
-              variant="h5"
-              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-              align="center"
-            >
-              Current Lord: {allChars[house.currentLord.slice(49)].name}
-            </Typography>
-          ) : null}
-        </CardContent>
-        <CardContent>
           <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
+            variant="h4"
             align="center"
+            style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
           >
-            swornMembers:
+            {house.region}
           </Typography>
-          {house.swornMembers.length > 1
-            ? this.renderMembers(house.swornMembers)
-            : null}
         </CardContent>
-        <CardContent>{this.renderOverlord(house.overlord)}</CardContent>
+
+        {house.currentLord.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Uncial Antiqua, cursive'
+              }}
+            >
+              Current Lord:
+            </Typography>
+            <Typography
+              variant="h3"
+              align="center"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+            >
+              {allChars[house.currentLord.slice(49)].name}
+            </Typography>
+          </CardContent>
+        ) : null}
+
+        {house.swornMembers.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: 'Uncial Antiqua, cursive'
+              }}
+            >
+              Shown Members:
+            </Typography>
+            {this.renderMembers(house.swornMembers)}
+          </CardContent>
+        ) : null}
+        {house.overlord.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            >
+              Overlord:
+            </Typography>
+            {this.renderOverlord(house.overlord)}
+          </CardContent>
+        ) : null}
       </Card>
     ));
   }
@@ -272,7 +328,17 @@ class HousesName extends React.Component {
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >
-                current page: {this.state.currentPage} of 23
+                current page:
+              </Typography>
+              <Typography
+                variant="h3"
+                style={{
+                  fontFamily: 'Uncial Antiqua, cursive',
+                  color: '#dab239'
+                }}
+                align="center"
+              >
+                {this.state.currentPage} of 23
               </Typography>
             </CardContent>
             <CardContent align="center">
@@ -281,7 +347,9 @@ class HousesName extends React.Component {
                 style={{
                   backgroundColor: '#54bd9f',
                   fontFamily: 'Uncial Antiqua, cursive',
-                  marginRight: 10
+                  marginRight: 10,
+                  fontSize: 45,
+                  fontColor: 'white'
                 }}
                 align="center"
                 onClick={this.loadPrevHouses}
@@ -293,7 +361,9 @@ class HousesName extends React.Component {
                 variant="contained"
                 style={{
                   backgroundColor: '#54bd9f',
-                  fontFamily: 'Uncial Antiqua, cursive'
+                  fontFamily: 'Uncial Antiqua, cursive',
+                  fontSize: 45,
+                  fontColor: 'white'
                 }}
                 align="center"
                 onClick={this.loadNextHouses}

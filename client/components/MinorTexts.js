@@ -75,27 +75,54 @@ class MinorTexts extends React.Component {
         <CardContent>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Marck Script,cursive', fontWeight: 'bold' }}
+            style={{
+              fontFamily: 'Marck Script,cursive',
+              fontWeight: 'bold',
+              color: '#22949f'
+            }}
             align="center"
           >
             {book.author}
           </Typography>
         </CardContent>
-        <CardContent>
+        <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            style={{ fontFamily: 'Pirata One, cursive' }}
           >
-            pages: {book.numOfPages}
+            pages:
           </Typography>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            style={{ fontFamily: 'Signika', paddingLeft: 10 }}
           >
-            published:{book.datePublished}
+            {book.numOfPages}
+          </Typography>
+        </CardContent>
+        <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive' }}
+          >
+            Published:
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Signika', paddingLeft: 10 }}
+          >
+            {book.datePublished}
           </Typography>
         </CardContent>
         <CardContent>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: 'Signika',
+              fontWeight: 'bold'
+            }}
+          >
+            Format:
+          </Typography>
           <Typography
             variant="h4"
             style={{
@@ -105,7 +132,7 @@ class MinorTexts extends React.Component {
             }}
             align="center"
           >
-            type: {book.mediaType}
+            {book.mediaType}
           </Typography>
         </CardContent>
         <CardContent align="center">
@@ -113,9 +140,10 @@ class MinorTexts extends React.Component {
             variant="contained"
             style={{
               backgroundColor: '#2d3258',
-              fontFamily: 'Pirata One, cursive',
-              fontSize: 40,
-              color: 'white'
+              fontFamily: 'Uncial Antiqua, cursive',
+              fontSize: 30,
+              color: 'white',
+              boderRadius: 15
             }}
             component={Link}
             to={{
@@ -126,7 +154,7 @@ class MinorTexts extends React.Component {
               }
             }}
           >
-            characters in this book
+            List of characters in this book
           </Button>
         </CardContent>
       </Card>

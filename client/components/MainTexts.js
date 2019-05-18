@@ -64,6 +64,9 @@ class MainTexts extends React.Component {
         key={book.apiId}
       >
         <CardContent>
+          <CardMedia component="img" image={book.coverImage} title="key" />
+        </CardContent>
+        <CardContent>
           <Typography
             variant="h2"
             style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
@@ -71,9 +74,6 @@ class MainTexts extends React.Component {
           >
             {book.title}
           </Typography>
-        </CardContent>
-        <CardContent>
-          <CardMedia component="img" image={book.coverImage} title="key" />
         </CardContent>
         <CardContent>
           <Typography
@@ -93,18 +93,32 @@ class MainTexts extends React.Component {
             {book.author}
           </Typography>
         </CardContent>
-        <CardContent>
+        <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
             variant="h4"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
-            pages: {book.numOfPages}
+            pages:
           </Typography>
           <Typography
             variant="h4"
+            style={{ fontFamily: 'Signika', paddingLeft: 10 }}
+          >
+            {book.numOfPages}
+          </Typography>
+        </CardContent>
+        <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
+          <Typography
+            variant="h4"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
-            published: {book.datePublished}
+            Published:
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Signika', paddingLeft: 10 }}
+          >
+            {book.datePublished}
           </Typography>
         </CardContent>
         <CardContent align="center">
@@ -112,9 +126,10 @@ class MainTexts extends React.Component {
             variant="contained"
             style={{
               backgroundColor: '#2e4b77',
-              fontFamily: 'Pirata One, cursive',
-              fontSize: 40,
-              color: 'white'
+              fontFamily: 'Uncial Antiqua, cursive',
+              fontSize: 35,
+              color: 'white',
+              boderRadius: 15
             }}
             component={Link}
             to={{
@@ -125,7 +140,7 @@ class MainTexts extends React.Component {
               }
             }}
           >
-            characters in this book
+            List of characters in this book
           </Button>
         </CardContent>
       </Card>
