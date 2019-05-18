@@ -51,13 +51,14 @@ class MainTexts extends React.Component {
       currentPage: 1
     };
     this.renderBooks = this.renderBooks.bind(this);
+    this.renderCharacters = this.renderCharacters.bind(this);
   }
-  renderMembers(members) {
+  renderCharacters(charArr) {
     const allChars = this.props.allChars;
-    const allMems = [];
-    members.forEach(member => allMems.push(allChars[member.slice(49)].name));
-    if (allMems.length > 1) {
-      return allMems.map(person => (
+    const bookChars = [];
+    charArr.forEach(char => bookChars.push(allChars[char.slice(49)].name));
+    if (bookChars.length > 1) {
+      return bookChars.map(person => (
         <Typography
           variant="h5"
           style={{ fontFamily: 'Uncial Antiqua, cursive' }}
@@ -67,8 +68,6 @@ class MainTexts extends React.Component {
         </Typography>
       ));
     }
-
-    console.log('all mems', allMems);
   }
   renderBooks() {
     const mainBooks = this.props.mainBooksArr;
@@ -129,18 +128,18 @@ class MainTexts extends React.Component {
             published: {book.datePublished}
           </Typography>
         </CardContent>
-        {/* <CardContent>
+        <CardContent>
           <Typography
             variant="h5"
             style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
             align="center"
           >
-            swornMembers:
+            features characters:
           </Typography>
-          {house.swornMembers.length > 1
-            ? this.renderMembers(house.swornMembers)
-            : null}
-        </CardContent> */}
+          {/* {book.characters.length > 1 */}
+          {this.renderCharacters(book.characters)}
+          {/* : null} */}
+        </CardContent>
       </Card>
     ));
   }
