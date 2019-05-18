@@ -88,7 +88,6 @@ export const getCharList = () => dispatch => {
       });
   }
 
-  console.log('charactersmap arrr is ', allCharsMap);
   dispatch(gotAllChars(allCharsMap));
 };
 

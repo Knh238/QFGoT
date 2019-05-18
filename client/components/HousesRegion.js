@@ -84,7 +84,6 @@ class HousesRegion extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log('this state houses fulll list', this.props.allHouses);
     return (
       <Paper>
         <Card style={{ backgroundColor: '#080e28' }}>

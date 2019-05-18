@@ -44,7 +44,7 @@ class MinorTexts extends React.Component {
 
   renderBooks() {
     const mainBooks = this.props.minorBooksArr;
-    console.log('main books arr', mainBooks);
+
     return mainBooks.map(book => (
       <Card
         style={{

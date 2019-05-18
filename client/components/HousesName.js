@@ -106,8 +106,6 @@ class HousesName extends React.Component {
         </Typography>
       ));
     }
-
-    console.log('all mems', allMems);
   }
   renderOverlord(overlord) {
     const allHouses = this.props.allHouses;

@@ -55,7 +55,6 @@ class MainTexts extends React.Component {
 
   renderBooks() {
     const mainBooks = this.props.mainBooksArr;
-    console.log('main books arr', mainBooks);
     return mainBooks.map(book => (
       <Card
         style={{

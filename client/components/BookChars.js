@@ -54,7 +54,6 @@ class BookChars extends React.Component {
     const charsArr = this.state.charsArr;
     const bookCast = [];
     charsArr.forEach(person => bookCast.push(person.slice(49)));
-    console.log('book cast arr', bookCast);
 
     return bookCast.map(person => (
       <Card

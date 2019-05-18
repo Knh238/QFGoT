@@ -37,8 +37,7 @@ class SingleCharView extends React.Component {
   componentDidMount() {
     const self = this;
     const charId = this.props.location.state.charId;
-    // const charName = this.props.location.state.charName;
-    console.log('character id in the single var view is '.charId);
+
     return axios
       .get(`https://www.anapioficeandfire.com/api/characters/${charId}`)
       .then(function(res) {

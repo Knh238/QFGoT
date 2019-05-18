@@ -406,7 +406,7 @@ class CharsByGender extends React.Component {
         </div>
         <div
           style={{
-            marginLeft: '10%',
+            marginLeft: '18%',
             display: 'flex',
             height: '15%',
             justifyContent: 'center',
@@ -430,7 +430,7 @@ class CharsByGender extends React.Component {
                   backgroundColor: '#dab239',
                   fontFamily: 'Uncial Antiqua, cursive',
                   marginRight: 10,
-                  fontSize: 40
+                  fontSize: 20
                 }}
                 align="center"
                 onClick={this.loadPrevHouses}
@@ -443,7 +443,7 @@ class CharsByGender extends React.Component {
                 style={{
                   backgroundColor: '#dab239',
                   fontFamily: 'Uncial Antiqua, cursive',
-                  fontSize: 40
+                  fontSize: 20
                 }}
                 align="center"
                 onClick={this.loadNextHouses}
