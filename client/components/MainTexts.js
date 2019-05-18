@@ -59,16 +59,27 @@ class MainTexts extends React.Component {
     return mainBooks.map(book => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          height: '20%',
+          marginTop: 10
         }}
+        raised={true}
         key={book.apiId}
       >
-        <CardContent>
-          <CardMedia component="img" image={book.coverImage} title="key" />
+        <CardContent align="center">
+          <CardMedia
+            component="img"
+            image={book.coverImage}
+            style={{
+              width: '40%',
+              height: '20%'
+            }}
+            title="key"
+          />
         </CardContent>
         <CardContent>
           <Typography
-            variant="h2"
+            variant="h3"
             style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
             align="center"
           >
@@ -77,7 +88,7 @@ class MainTexts extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h3"
+            variant="h4"
             style={{ fontFamily: 'Marck Script,cursive', color: '#54bd9f' }}
             align="center"
           >
@@ -86,7 +97,7 @@ class MainTexts extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             align="center"
           >
@@ -95,13 +106,13 @@ class MainTexts extends React.Component {
         </CardContent>
         <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             pages:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Signika', paddingLeft: 10 }}
           >
             {book.numOfPages}
@@ -109,13 +120,13 @@ class MainTexts extends React.Component {
         </CardContent>
         <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Published:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Signika', paddingLeft: 10 }}
           >
             {book.datePublished}
@@ -127,7 +138,7 @@ class MainTexts extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontSize: 35,
+              fontSize: 30,
               color: 'white',
               boderRadius: 15
             }}
@@ -155,7 +166,7 @@ class MainTexts extends React.Component {
           <Card style={{ backgroundColor: '#080e28' }}>
             <CardContent>
               <Typography
-                variant="h2"
+                variant="h3"
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >
@@ -168,8 +179,9 @@ class MainTexts extends React.Component {
           style={{
             marginLeft: '10%',
             display: 'flex',
-            height: '15%',
-            justifyContent: 'center',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
             marginTop: 5
           }}
         >
@@ -183,7 +195,7 @@ class MainTexts extends React.Component {
             }}
           >
             <Typography
-              variant="h2"
+              variant="h3"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#2d3258'

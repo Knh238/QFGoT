@@ -66,7 +66,7 @@ class NavDrawer extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography
-              variant="h2"
+              variant="h4"
               color="inherit"
               noWrap
               style={{ marginLeft: '35%', fontFamily: 'Pirata One, cursive' }}
@@ -130,9 +130,7 @@ class NavDrawer extends React.Component {
               <ListItemText inset primary="Other works" />
             </ListItem>
           </List>
-          <Divider light />
           <List>
-            <Divider light />
             <ListItem key="houses" divider={true}>
               <ListItemIcon>
                 <SecurityIcon />
@@ -161,9 +159,7 @@ class NavDrawer extends React.Component {
               <ListItemText inset primary="By Name" />
             </ListItem>
           </List>
-          <Divider light />
           <List>
-            <Divider light />
             <ListItem key="characters" divider={true}>
               <ListItemIcon>
                 <PeopleOutlineIcon />

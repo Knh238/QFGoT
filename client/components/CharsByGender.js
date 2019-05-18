@@ -199,14 +199,16 @@ class CharsByGender extends React.Component {
       <Card
         style={{
           width: '30%',
-          marginRight: 5
+          marginRight: 5,
+          marginTop: 10
         }}
+        raised={true}
         key={person.name}
       >
         <CardContent align="center" style={{ backgroundColor: '#22949f' }}>
           {person.name === '' ? (
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#424242' }}
               align="center"
             >
@@ -214,7 +216,7 @@ class CharsByGender extends React.Component {
             </Typography>
           ) : (
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -226,7 +228,7 @@ class CharsByGender extends React.Component {
         {person.aliases.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               align="center"
               style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             >
@@ -237,19 +239,19 @@ class CharsByGender extends React.Component {
         ) : null}
 
         <CardContent>
-          <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
+          <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
             {person.gender}
           </Typography>
         </CardContent>
 
         <CardContent>
           {person.born.length > 1 ? (
-            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
               Born: {person.born}
             </Typography>
           ) : null}
           {person.died.length > 1 ? (
-            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
               Died: {person.died}
             </Typography>
           ) : null}
@@ -257,7 +259,7 @@ class CharsByGender extends React.Component {
         {person.titles.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#22949f'
@@ -271,7 +273,7 @@ class CharsByGender extends React.Component {
         {person.culture.length > 1 ? (
           <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#22949f'
@@ -280,7 +282,7 @@ class CharsByGender extends React.Component {
               Culture :
             </Typography>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive'
               }}
@@ -292,7 +294,7 @@ class CharsByGender extends React.Component {
         {person.tvSeries.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#22949f'
@@ -303,7 +305,7 @@ class CharsByGender extends React.Component {
             {this.renderTVList(person.tvSeries)}
             <Typography
               align="center"
-              variant="h3"
+              variant="h4"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#54bd9f'
@@ -312,7 +314,7 @@ class CharsByGender extends React.Component {
               Played By:
             </Typography>
             <Typography
-              variant="h3"
+              variant="h4"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
               align="center"
             >
@@ -323,7 +325,7 @@ class CharsByGender extends React.Component {
         {person.books.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             >
               Appears in Books:
@@ -334,7 +336,7 @@ class CharsByGender extends React.Component {
         {person.allegiances.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
             >
               Allied With:
@@ -344,7 +346,7 @@ class CharsByGender extends React.Component {
         ) : null}
         <CardContent alignSelf="flex-end">
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Signika',
               float: 'right',
@@ -365,7 +367,7 @@ class CharsByGender extends React.Component {
         <Card align="center">
           <CardContent align="center" style={{ backgroundColor: '#2e4b77' }}>
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -398,7 +400,7 @@ class CharsByGender extends React.Component {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'center'
+            justifyContent: 'space-around'
           }}
         >
           {this.renderChars()}
@@ -415,7 +417,7 @@ class CharsByGender extends React.Component {
           <Card>
             <CardContent>
               <Typography
-                variant="h4"
+                variant="h5"
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >

@@ -63,7 +63,7 @@ class HousesRegion extends React.Component {
             style={{
               backgroundColor: '#22949f',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 55,
+              fontSize: 35,
               color: 'white',
               borderRadius: 15
             }}
@@ -90,7 +90,7 @@ class HousesRegion extends React.Component {
         <Card style={{ backgroundColor: '#080e28' }}>
           <CardContent align="center">
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -102,7 +102,7 @@ class HousesRegion extends React.Component {
           <CardContent align="center">
             <CardMedia
               component="img"
-              style={{ height: '50%', width: '40%' }}
+              style={{ height: '40%', width: '30%' }}
               image={'https://iv1.lisimg.com/image/7808977/740full.jpg'}
               title="key"
             />

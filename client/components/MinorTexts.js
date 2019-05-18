@@ -18,7 +18,10 @@ const styles = theme => ({
     maxWidth: 345,
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    borderWidth: '3',
+    padding: 10,
+    borderColor: 'white'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -45,13 +48,22 @@ class MinorTexts extends React.Component {
     return mainBooks.map(book => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          marginTop: 10,
+          borderWidth: '3px',
+          borderColor: 'white'
         }}
+        raised={true}
         key={book.apiId}
       >
-        <CardContent>
+        <CardContent
+          style={{
+            borderWidth: 3,
+            borderColor: 'white'
+          }}
+        >
           <Typography
-            variant="h2"
+            variant="h4"
             style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
@@ -60,7 +72,7 @@ class MinorTexts extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Marck Script,cursive',
               fontWeight: 'bold',
@@ -73,13 +85,13 @@ class MinorTexts extends React.Component {
         </CardContent>
         <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             pages:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Signika', paddingLeft: 10 }}
           >
             {book.numOfPages}
@@ -87,13 +99,13 @@ class MinorTexts extends React.Component {
         </CardContent>
         <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Published:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Signika', paddingLeft: 10 }}
           >
             {book.datePublished}
@@ -101,7 +113,7 @@ class MinorTexts extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Signika',
               fontWeight: 'bold'
@@ -110,7 +122,7 @@ class MinorTexts extends React.Component {
             Format:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Marck Script,cursive',
               color: '#dab239',
@@ -127,7 +139,7 @@ class MinorTexts extends React.Component {
             style={{
               backgroundColor: '#2d3258',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontSize: 30,
+              fontSize: 20,
               color: 'white',
               boderRadius: 15
             }}
@@ -155,7 +167,7 @@ class MinorTexts extends React.Component {
           <Card style={{ backgroundColor: '#080e28' }}>
             <CardContent>
               <Typography
-                variant="h2"
+                variant="h3"
                 style={{ fontFamily: 'Pirata One, cursive' }}
                 align="center"
               >
@@ -168,8 +180,9 @@ class MinorTexts extends React.Component {
           style={{
             marginLeft: '10%',
             display: 'flex',
-            height: '15%',
-            justifyContent: 'center',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
             marginTop: 5
           }}
         >
@@ -183,7 +196,7 @@ class MinorTexts extends React.Component {
             }}
           >
             <Typography
-              variant="h2"
+              variant="h4"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#2d3258'

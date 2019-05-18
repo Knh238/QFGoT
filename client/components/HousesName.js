@@ -99,7 +99,7 @@ class HousesName extends React.Component {
         <Typography
           key={person}
           align="center"
-          variant="h4"
+          variant="h5"
           style={{ fontFamily: 'Marck Script,cursive', color: '#22949f' }}
         >
           {person}
@@ -122,7 +122,7 @@ class HousesName extends React.Component {
             style={{
               backgroundColor: '#dab239',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontSize: 25,
+              fontSize: 20,
               alignSelf: 'center',
               color: 'white'
             }}
@@ -147,8 +147,10 @@ class HousesName extends React.Component {
     return this.state.housesArr.map(house => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          marginTop: 10
         }}
+        raised={true}
         key={house.name}
       >
         <CardContent
@@ -158,7 +160,7 @@ class HousesName extends React.Component {
           }}
         >
           <Typography
-            variant="h2"
+            variant="h3"
             style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
@@ -168,7 +170,7 @@ class HousesName extends React.Component {
         {house.coatOfArms.length ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Uncial Antiqua, cursive'
               }}
@@ -176,7 +178,7 @@ class HousesName extends React.Component {
               coat of arms:
             </Typography>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Marck Script,cursive',
                 color: '#22949f'
@@ -191,13 +193,13 @@ class HousesName extends React.Component {
         {house.seats.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Uncial Antiqua, cursive' }}
             >
               House Seats:
             </Typography>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Uncial Antiqua, cursive',
                 color: '#54bd9f'
@@ -210,13 +212,13 @@ class HousesName extends React.Component {
         ) : null}
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Uncial Antiqua, cursive' }}
           >
             Region:
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             align="center"
             style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
           >
@@ -227,7 +229,7 @@ class HousesName extends React.Component {
         {house.currentLord.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Uncial Antiqua, cursive'
               }}
@@ -235,7 +237,7 @@ class HousesName extends React.Component {
               Current Lord:
             </Typography>
             <Typography
-              variant="h3"
+              variant="h4"
               align="center"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
             >
@@ -247,7 +249,7 @@ class HousesName extends React.Component {
         {house.swornMembers.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Uncial Antiqua, cursive'
               }}
@@ -260,7 +262,7 @@ class HousesName extends React.Component {
         {house.overlord.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Uncial Antiqua, cursive' }}
             >
               Overlord:
@@ -279,7 +281,7 @@ class HousesName extends React.Component {
         <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -303,21 +305,21 @@ class HousesName extends React.Component {
             marginLeft: '10%',
             display: 'flex',
             height: '15%',
-            justifyContent: 'center',
+            justifyContent: 'space-around',
             marginTop: 5
           }}
         >
           <Card>
             <CardContent>
               <Typography
-                variant="h4"
+                variant="h5"
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >
                 current page:
               </Typography>
               <Typography
-                variant="h3"
+                variant="h5"
                 style={{
                   fontFamily: 'Uncial Antiqua, cursive',
                   color: '#dab239'
@@ -334,7 +336,7 @@ class HousesName extends React.Component {
                   backgroundColor: '#54bd9f',
                   fontFamily: 'Uncial Antiqua, cursive',
                   marginRight: 10,
-                  fontSize: 45,
+                  fontSize: 25,
                   fontColor: 'white'
                 }}
                 align="center"
@@ -348,7 +350,7 @@ class HousesName extends React.Component {
                 style={{
                   backgroundColor: '#54bd9f',
                   fontFamily: 'Uncial Antiqua, cursive',
-                  fontSize: 45,
+                  fontSize: 25,
                   fontColor: 'white'
                 }}
                 align="center"

@@ -62,13 +62,15 @@ class HousesRegionDetail extends React.Component {
     return regionArr.map(house => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          marginTop: 10
         }}
+        raised={true}
         key={house.name}
       >
         <CardContent align="center">
           <Typography
-            variant="h2"
+            variant="h3"
             style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
@@ -79,7 +81,7 @@ class HousesRegionDetail extends React.Component {
         <CardContent align="center">
           {house.coatOfArms.length > 1 ? (
             <Typography
-              variant="h3"
+              variant="h4"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
               align="center"
             >
@@ -91,7 +93,7 @@ class HousesRegionDetail extends React.Component {
         <CardContent align="center">
           {house.words.length > 1 ? (
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Marck Script,cursive' }}
               align="center"
             >
@@ -101,7 +103,7 @@ class HousesRegionDetail extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h3"
+            variant="h4"
             style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
           >
             Seat: {house.seats}
@@ -109,19 +111,19 @@ class HousesRegionDetail extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Titles: "{house.titles}"
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Current Lord: "{house.currentLord.slice(49)}"
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Pirata One, cursive'
             }}
@@ -160,7 +162,7 @@ class HousesRegionDetail extends React.Component {
         <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -172,7 +174,7 @@ class HousesRegionDetail extends React.Component {
           <CardContent align="center">
             <CardMedia
               component="img"
-              style={{ height: '50%', width: '40%' }}
+              style={{ height: '40%', width: '30%' }}
               image={regionImg}
               title="key"
             />
@@ -184,7 +186,7 @@ class HousesRegionDetail extends React.Component {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'center'
+            justifyContent: 'space-around'
           }}
         >
           {this.renderRegion()}

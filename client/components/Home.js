@@ -24,7 +24,7 @@ class Home extends React.Component {
       >
         <CardContent style={{ backgroundColor: '#54bd9f' }}>
           <Typography
-            variant="h1"
+            variant="h3"
             style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
@@ -33,7 +33,7 @@ class Home extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h2"
+            variant="h4"
             style={{
               fontFamily: 'Marck Script,cursive',
               marginTop: 10,
@@ -44,7 +44,7 @@ class Home extends React.Component {
             ....But that 6th book aint!
           </Typography>
           <Typography
-            variant="h3"
+            variant="h4"
             style={{
               fontFamily: 'Marck Script,cursive',
               marginTop: 10,

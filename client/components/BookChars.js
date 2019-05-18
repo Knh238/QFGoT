@@ -59,8 +59,10 @@ class BookChars extends React.Component {
     return bookCast.map(person => (
       <Card
         style={{
-          width: '40%'
+          width: '40%',
+          marginTop: 10
         }}
+        raised={true}
         key={person}
       >
         {person !== '' ? (
@@ -86,16 +88,6 @@ class BookChars extends React.Component {
             </Button>
           </CardContent>
         ) : null}
-        {/* <Button color:color: '#54bd9f'/> */}
-        {/* <Typography
-              variant="h2"
-              style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
-              align="center"
-            >
-              {allChars[person] ? allChars[person].name || '' : null}
-            </Typography>
-          </CardContent> */}
-        {/* ) : null} */}
       </Card>
     ));
   }
@@ -107,7 +99,7 @@ class BookChars extends React.Component {
         <Card>
           <CardContent align="center">
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >

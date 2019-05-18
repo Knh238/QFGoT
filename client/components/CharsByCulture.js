@@ -59,7 +59,7 @@ class CharsByCulture extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 55,
+              fontSize: 35,
               color: 'white',
               borderRadius: 15
             }}
@@ -85,13 +85,13 @@ class CharsByCulture extends React.Component {
         <Card>
           <CardContent align="center" style={{ backgroundColor: '#2d3258' }}>
             <Typography
-              variant="h1"
+              variant="h2"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
               Characters By Culture
             </Typography>
-          </CardContent>z
+          </CardContent>
           <CardContent align="center">
             <CardMedia
               component="img"
