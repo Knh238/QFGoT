@@ -37,51 +37,40 @@ const styles = theme => ({
   }
 });
 
-class HousesRegion extends React.Component {
+class CharsByCulture extends React.Component {
   constructor(props) {
     super(props);
     this.state = { houseList: {} };
   }
 
-  componentDidMount() {
-    this.setState({ houseList: this.props.allHouses });
-  }
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
-
-  renderRegions() {
-    const regionsArr = this.props.regionsArr;
-    return regionsArr.map(region => (
+  renderCultures() {
+    const allCultures = this.props.allCultures;
+    return allCultures.map(culture => (
       <Card
         style={{
-          width: '40%'
+          width: '20%'
         }}
         transparent
-        key={region.name}
+        key={culture}
       >
         <CardContent align="center">
           <Button
             variant="contained"
             style={{
-              backgroundColor: '#22949f',
+              backgroundColor: '#2e4b77',
               fontFamily: 'Pirata One, cursive',
               fontSize: 45,
               color: 'white'
             }}
             component={Link}
             to={{
-              pathname: '/HousesInRegion',
+              pathname: '/CultureDetail',
               state: {
-                regionName: region.name,
-                regionImg: region.img
+                cultureName: culture
               }
             }}
           >
-            {region.name}
+            {culture}
           </Button>
         </CardContent>
       </Card>
@@ -89,7 +78,7 @@ class HousesRegion extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log('this state houses fulll list', this.props.allHouses);
+    console.log('this state houses fulll list', this.props.allCultures);
     return (
       <Paper>
         <Card>
@@ -99,30 +88,28 @@ class HousesRegion extends React.Component {
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
-              Houses By Region
+              Characters By Culture
             </Typography>
-          </CardContent>
+          </CardContent>z
           <CardContent align="center">
             <CardMedia
               component="img"
               style={{ height: '40%', width: '20%' }}
-              image={
-                'https://i.pinimg.com/564x/f2/eb/e5/f2ebe540d30a8c006be97627f2859b0b.jpg'
-              }
+              image={'https://awoiaf.westeros.org/images/5/5f/Wildlings.jpg'}
               title="key"
             />
           </CardContent>
         </Card>
         <div
           style={{
-            // marginLeft: '10%',
             display: 'flex',
+            marginLeft: '10%',
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}
         >
-          {this.renderRegions()}
+          {this.renderCultures()}
         </div>
       </Paper>
     );
@@ -133,7 +120,8 @@ const mapStateToProps = state => {
   return {
     ...state,
     allHouses: state.allHouses,
-    regionsArr: state.regionsArr
+    regionsArr: state.regionsArr,
+    allCutlures: state.allCutlures
   };
 };
 
@@ -143,9 +131,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-HousesRegion.propTypes = {
+CharsByCulture.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesRegion)
+  withStyles(styles, { withTheme: true })(CharsByCulture)
 );

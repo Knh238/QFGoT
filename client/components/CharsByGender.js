@@ -5,20 +5,16 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import AddIcon from '@material-ui/icons/Add';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { getHouseList } from '../store/booksReducer';
 
 const styles = theme => ({
   container: {
@@ -43,14 +39,10 @@ const styles = theme => ({
   }
 });
 
-class HousesName extends React.Component {
+class CharsByGender extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      housesArr: [],
-      houseList: {},
-      currentPage: 1
-    };
+    this.state = { charsArr: [], currentPage: 1 };
     this.loadNextHouses = this.loadNextHouses.bind(this);
     this.loadPrevHouses = this.loadPrevHouses.bind(this);
   }
@@ -58,24 +50,24 @@ class HousesName extends React.Component {
   componentDidMount() {
     const self = this;
     const currPage = this.state.currentPage;
-    const allHouses = this.props.allHouses;
 
+    const currGender = this.props.location.state.gender;
     return axios
       .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
+        `https://www.anapioficeandfire.com/api/characters?page=${currPage}&pageSize=50&gender=${currGender}`
       )
       .then(function(res) {
-        self.setState({ housesArr: res.data, houseList: allHouses });
+        self.setState({ charsArr: res.data, gender: currGender });
       });
   }
-
   loadNextHouses() {
     const newPage = (this.state.currentPage += 1);
     //add error handling so it wont go above 24
+    const currGenderN = this.state.gender;
     const self = this;
     return axios
       .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
+        `https://www.anapioficeandfire.com/api/characters?page=${newPage}&pageSize=50&gender=${currGenderN}`
       )
       .then(function(res) {
         self.setState({ housesArr: res.data, currentPage: newPage });
@@ -85,131 +77,127 @@ class HousesName extends React.Component {
     const newPage = (this.state.currentPage -= 1);
     //add error handling so it wont go below or to 0
     const self = this;
+    const currGenderP = this.state.gender;
     return axios
       .get(
-        `https://www.anapioficeandfire.com/api/houses?page=${newPage}&pageSize=20`
+        `https://www.anapioficeandfire.com/api/characters?page=${newPage}&pageSize=50&gender=${currGenderP}`
       )
       .then(function(res) {
         self.setState({ housesArr: res.data, currentPage: newPage });
       });
   }
-
-  renderOverlord(overlord) {
-    const allHouses = this.props.allHouses;
-    if (overlord.length > 1) {
-      const overlordStr = overlord.slice(45);
-      const overlordNum = parseInt(overlordStr);
-      if (overlordNum < 250) {
-        const overlordName = allHouses[overlordStr].name;
-        return (
-          <CardContent align="center">
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
-              component={Link}
-              to={{
-                pathname: '/IndividualHouse',
-                state: {
-                  houseId: overlordStr
-                }
-              }}
-            >
-              overlord:{overlordName}
-            </Button>
-          </CardContent>
-        );
-      }
-    } else {
-      return '';
-    }
-  }
-  renderRegions() {
-    const allHouses = this.props.allHouses;
-    return this.state.housesArr.map(house => (
+  renderChars() {
+    const charsArr = this.state.charsArr;
+    return charsArr.map(person => (
       <Card
         style={{
           width: '40%'
         }}
-        key={house.name}
+        key={person.name}
       >
-        <CardContent>
+        <CardContent align="center">
           <Typography
             variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
-            {house.name}
+            {person.name}
           </Typography>
+        </CardContent>
+        <CardContent align="center">
+          {person.titles.length > 1 ? (
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+              align="center"
+            >
+              {person.titles}
+            </Typography>
+          ) : null}
+        </CardContent>
+        <CardContent align="center">
+          {person.aliases.length > 1 ? (
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+              align="center"
+            >
+              {person.aliases}
+            </Typography>
+          ) : null}
         </CardContent>
         <CardContent>
           <Typography
             variant="h4"
-            style={{
-              fontFamily: 'Marck Script,cursive'
-            }}
-            align="center"
+            style={{ fontFamily: 'Marck Script,cursive' }}
           >
-            {house.coatOfArms.length ? house.coatOfArms : null}
+            {person.gender}
           </Typography>
         </CardContent>
 
-        {house.seats.length > 1 ? (
-          <CardContent>
+        <CardContent>
+          {person.born.length > 1 ? (
             <Typography
               variant="h4"
-              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Born: {person.born}
+            </Typography>
+          ) : null}
+          {person.died.length > 1 ? (
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Died: {person.died}
+            </Typography>
+          ) : null}
+        </CardContent>
+
+        {person.tvSeries.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            >
+              Featured in: {person.tvSeries}
+            </Typography>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#22949f' }}
               align="center"
             >
-              Seat:
-              {house.seats}
+              Played By: {person.playedBy}
             </Typography>
           </CardContent>
         ) : null}
-        <CardContent>
-          <Typography
-            variant="h4"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            Region: {house.region}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.currentlord}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          {/* <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.overlord.slice(45)}
-          </Typography> */}
-          {this.renderOverlord(house.overlord)}
-        </CardContent>
+        {person.books.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Appears in: {person.books}
+              {/* books.slice(44) would give us just the number */}
+            </Typography>
+          </CardContent>
+        ) : null}
       </Card>
     ));
   }
   render() {
     const { classes } = this.props;
-    // console.log('this state house is', this.state.housesArr);
-    console.log('this state house all houses ', this.props.allHouses);
+    const cultureName = this.props.location.state.cultureName;
     return (
       <Paper>
         <Card>
           <CardContent align="center">
             <Typography
               variant="h1"
-              style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
+              style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
-              Houses By Name
+              {cultureName} Characters
             </Typography>
           </CardContent>
         </Card>
@@ -222,7 +210,7 @@ class HousesName extends React.Component {
             justifyContent: 'center'
           }}
         >
-          {this.state.housesArr ? this.renderRegions() : null}
+          {this.renderChars()}
         </div>
         <div
           style={{
@@ -280,17 +268,22 @@ class HousesName extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allHouses: state.allHouses
+    bookList: state.bookList,
+    allHouses: state.allHouses,
+    regionsArr: state.regionsArr,
+    allCutlures: state.allCutlures
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
-    getHouseList: () => dispatch(getHouseList())
+    getBookList: id => dispatch(getBookList(id))
   };
 };
-HousesName.propTypes = {
+
+CharsByGender.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesName)
+  withStyles(styles, { withTheme: true })(CharsByGender)
 );

@@ -144,13 +144,32 @@ const regionsArr = [
       'https://vignette.wikia.nocookie.net/gameofthrones/images/d/d0/The_Riverlands.png/revision/latest?cb=20120719200633'
   }
 ];
-// {apiId:1 , title:"A Game of Thrones" , seriesNumber:"A Song Of Ice and Fire #1" ,author:"George R.R. Martin",datePublished:1996 ,numOfPages:694, coverImage:"https://images.gr-assets.com/books/1554191954l/13496.jpg"  }
-// {apiId:2 , title: "A Clash of Kings", seriesNumber:"A Song Of Ice and Fire #2",author: "George R.R. Martin" ,datePublished:1999, numOfPages: 768 , coverImage:'https://images.gr-assets.com/books/1353400431l/11788811.jpg'  }
-// {apiId:3 , title:"A Storm of Swords" , seriesNumber:"A Song Of Ice and Fire #3",author: "George R.R. Martin" ,datePublished:2000, numOfPages: 992 , coverImage:'https://images.gr-assets.com/books/1427886300l/11133581.jpg'  }
-// {apiId:5 , title: 'A Feast for Crows', seriesNumber:"A Song Of Ice and Fire #4",author: "George R.R. Martin" ,datePublished:2005, numOfPages: 748 , coverImage:'https://images.gr-assets.com/books/1525084743l/147917.jpg'  }
-// {apiId:8, title: "A Dance with Dragons", seriesNumber:"A Song Of Ice and Fire #5" ,author:"George R.R. Martin" ,datePublished: 2011, numOfPages:1040 , coverImage: 'https://images.gr-assets.com/books/1327885335l/10664113.jpg' }
 
-// {apiId: , title: , seriesNumber:, author: "George R.R. Martin" ,datePublished:, numOfPages:694 , coverImage:  }
+const allCultures = [
+  'Dothraki',
+  'Valemen',
+  'First Men',
+  'Northmen',
+  'Rivermen',
+  'Braavosi',
+  'Andal',
+  'Crannogmen',
+  'Valyrian',
+  'Rhoynar',
+  'Free Folk',
+  'Dornish',
+  'Ironborn',
+  'Myrish',
+  'Tyroshi',
+  'Norvoshi',
+  'Ghiscari',
+  'Lhazareen',
+  'Qartheen',
+  'Asshai',
+  'Ibbenese',
+  'Naathi'
+];
+
 const mainBooksArr = [
   {
     apiId: 1,
@@ -201,66 +220,64 @@ const mainBooksArr = [
 const minorBooksArr = [
   {
     apiId: 4,
-    title: 'A Game of Thrones',
-    seriesNumber: 'A Song Of Ice and Fire #1',
+    title: 'The Hedge Knight',
+
     author: 'George R.R. Martin',
-    datePublished: 1996,
-    numOfPages: 694,
-    coverImage: 'https://images.gr-assets.com/books/1554191954l/13496.jpg'
+    mediaType: 'graphic novel',
+    datePublished: 2005,
+    numOfPages: 164
   },
   {
     apiId: 6,
-    title: 'A Clash of Kings',
-    seriesNumber: 'A Song Of Ice and Fire #2',
+    title: 'The Sworn Sword',
+
     author: 'George R.R. Martin',
-    datePublished: 1999,
-    numOfPages: 768,
-    coverImage: 'https://images.gr-assets.com/books/1353400431l/11788811.jpg'
+    datePublished: 2008,
+    mediaType: 'graphic novel',
+    numOfPages: 152
   },
   {
     apiId: 7,
-    title: 'A Storm of Swords',
-    seriesNumber: 'A Song Of Ice and Fire #3',
+    title: 'The Mystery Knight',
+
     author: 'George R.R. Martin',
-    datePublished: 2000,
-    numOfPages: 992,
-    coverImage: 'https://images.gr-assets.com/books/1427886300l/11133581.jpg'
+    datePublished: 2011,
+    mediaType: 'novella',
+    numOfPages: 416
   },
   {
     apiId: 9,
-    title: 'A Feast for Crows',
-    seriesNumber: 'A Song Of Ice and Fire #4',
+    title: 'The Princess and the Queen',
+
     author: 'George R.R. Martin',
-    datePublished: 2005,
-    numOfPages: 748,
-    coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+    datePublished: 2013,
+    mediaType: 'novella',
+    numOfPages: 784
   },
   {
     apiId: 10,
-    title: 'A Storm of Swords',
-    seriesNumber: 'A Song Of Ice and Fire #3',
+    title: 'The Rogue Prince',
+
     author: 'George R.R. Martin',
-    datePublished: 2000,
-    numOfPages: 992,
-    coverImage: 'https://images.gr-assets.com/books/1427886300l/11133581.jpg'
+    datePublished: 2014,
+    mediaType: 'novella',
+    numOfPages: 832
   },
   {
     apiId: 11,
-    title: 'A Feast for Crows',
-    seriesNumber: 'A Song Of Ice and Fire #4',
-    author: 'George R.R. Martin',
-    datePublished: 2005,
-    numOfPages: 748,
-    coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
+    title: 'The World of Ice and Fire',
+    author: 'Elio Garcia, Linda Antonsson, George R. R. Martin',
+    datePublished: 2014,
+    mediaType: 'companion',
+    numOfPages: 336
   },
   {
     apiId: 12,
-    title: 'A Dance with Dragons',
-    seriesNumber: 'A Song Of Ice and Fire #5',
+    title: 'A Knight of the Seven Kingdoms',
     author: 'George R.R. Martin',
-    datePublished: 2011,
-    numOfPages: 1040,
-    coverImage: 'https://images.gr-assets.com/books/1327885335l/10664113.jpg'
+    datePublished: 2015,
+    mediaType: 'novella',
+    numOfPages: 368
   }
 ];
 const initialState = {
@@ -269,6 +286,7 @@ const initialState = {
   allChars: {},
   charsInBook: [],
   charInfo: {},
+  allCultures,
   regionsArr,
   minorBooksArr,
   mainBooksArr

@@ -38,33 +38,33 @@ const styles = theme => ({
   }
 });
 
-class HousesRegionDetail extends React.Component {
+class CultureDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { housesArr: [], region: '' };
+    this.state = { charsArr: [], region: '' };
   }
 
   componentDidMount() {
     const self = this;
 
-    const currRegion = this.props.location.state.regionName;
+    const cultureName = this.props.location.state.cultureName;
     return axios
       .get(
-        `https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50&region=${currRegion}`
+        `https://www.anapioficeandfire.com/api/characters?page=1&pageSize=50&culture=${cultureName}`
       )
       .then(function(res) {
-        self.setState({ housesArr: res.data });
+        self.setState({ charsArr: res.data });
       });
   }
 
-  renderRegion() {
-    const regionArr = this.state.housesArr;
-    return regionArr.map(house => (
+  renderChars() {
+    const charsArr = this.state.charsArr;
+    return charsArr.map(person => (
       <Card
         style={{
           width: '40%'
         }}
-        key={house.name}
+        key={person.name}
       >
         <CardContent align="center">
           <Typography
@@ -72,90 +72,93 @@ class HousesRegionDetail extends React.Component {
             style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
-            {house.name}
+            {person.name}
           </Typography>
         </CardContent>
-
         <CardContent align="center">
-          {house.coatOfArms.length > 1 ? (
+          {person.titles.length > 1 ? (
             <Typography
               variant="h3"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
               align="center"
             >
-              "{house.coatOfArms}"
+              {person.titles}
+            </Typography>
+          ) : null}
+        </CardContent>
+        <CardContent align="center">
+          {person.aliases.length > 1 ? (
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
+              align="center"
+            >
+              {person.aliases}
+            </Typography>
+          ) : null}
+        </CardContent>
+        <CardContent>
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Marck Script,cursive' }}
+          >
+            {person.gender}
+          </Typography>
+        </CardContent>
+
+        <CardContent>
+          {person.born.length > 1 ? (
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Born: {person.born}
+            </Typography>
+          ) : null}
+          {person.died.length > 1 ? (
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Died: {person.died}
             </Typography>
           ) : null}
         </CardContent>
 
-        <CardContent align="center">
-          {house.words.length > 1 ? (
+        {person.tvSeries.length > 1 ? (
+          <CardContent>
             <Typography
-              variant="h4"
-              style={{ fontFamily: 'Marck Script,cursive' }}
+              variant="h3"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+            >
+              Featured in: {person.tvSeries}
+            </Typography>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Marck Script,cursive', color: '#22949f' }}
               align="center"
             >
-              "{house.words}"
+              Played By: {person.playedBy}
             </Typography>
-          ) : null}
-        </CardContent>
-        <CardContent>
-          <Typography
-            variant="h3"
-            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
-          >
-            Seat: {house.seats}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography
-            variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
-          >
-            Titles: "{house.titles}"
-          </Typography>
-          <Typography
-            variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
-          >
-            Current Lord: "{house.currentLord.slice(49)}"
-          </Typography>
-          <Typography
-            variant="h4"
-            style={{
-              fontFamily: 'Pirata One, cursive'
-            }}
-          >
-            Heir: "{house.heir.slice(49)}"
-          </Typography>
-        </CardContent>
-        <CardContent align="center">
-          <Button
-            variant="contained"
-            // size="large"
-            style={{
-              backgroundColor: '#2e4b77',
-              fontFamily: 'Uncial Antiqua, cursive',
-              fontWeight: 'bold'
-            }}
-            component={Link}
-            to={{
-              pathname: '/IndividualHouse',
-              state: {
-                houseId: house.url.slice(45)
-              }
-            }}
-          >
-            {house.name}
-          </Button>
-        </CardContent>
+          </CardContent>
+        ) : null}
+        {person.books.length > 1 ? (
+          <CardContent>
+            <Typography
+              variant="h4"
+              style={{ fontFamily: 'Pirata One, cursive' }}
+            >
+              Appears in: {person.books}
+              {/* books.slice(44) would give us just the number */}
+            </Typography>
+          </CardContent>
+        ) : null}
       </Card>
     ));
   }
   render() {
     const { classes } = this.props;
-    const regionName = this.props.location.state.regionName;
-    const regionImg = this.props.location.state.regionImg;
+    const cultureName = this.props.location.state.cultureName;
     return (
       <Paper>
         <Card>
@@ -165,16 +168,8 @@ class HousesRegionDetail extends React.Component {
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
-              The Houses of {regionName}
+              {cultureName} Characters
             </Typography>
-          </CardContent>
-          <CardContent align="center">
-            <CardMedia
-              component="img"
-              style={{ height: '50%', width: '30%' }}
-              image={regionImg}
-              title="key"
-            />
           </CardContent>
         </Card>
         <div
@@ -186,7 +181,7 @@ class HousesRegionDetail extends React.Component {
             justifyContent: 'center'
           }}
         >
-          {this.renderRegion()}
+          {this.renderChars()}
         </div>
       </Paper>
     );
@@ -196,7 +191,10 @@ class HousesRegionDetail extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    bookList: state.bookList
+    bookList: state.bookList,
+    allHouses: state.allHouses,
+    regionsArr: state.regionsArr,
+    allCutlures: state.allCutlures
   };
 };
 
@@ -206,9 +204,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-HousesRegionDetail.propTypes = {
+CultureDetail.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(HousesRegionDetail)
+  withStyles(styles, { withTheme: true })(CultureDetail)
 );

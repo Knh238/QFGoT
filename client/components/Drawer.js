@@ -168,7 +168,15 @@ class NavDrawer extends React.Component {
               <ListItemText primary="Characters" />
             </ListItem>
 
-            <ListItem inset button key="by culture">
+            <ListItem
+              inset
+              button
+              key="by culture"
+              component={Link}
+              to={{
+                pathname: '/AllCultures'
+              }}
+            >
               <ListItemText inset primary="By Culture" />
             </ListItem>
             <ListItem button key="by gender">

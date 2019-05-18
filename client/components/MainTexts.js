@@ -53,28 +53,6 @@ class MainTexts extends React.Component {
     this.renderBooks = this.renderBooks.bind(this);
   }
 
-  componentDidMount() {
-    const self = this;
-    // const currPage = this.state.currentPage;
-    // const allHouses = this.props.allHouses;
-
-    // return axios
-    //   .get(
-    //     `https://www.anapioficeandfire.com/api/houses?page=${currPage}&pageSize=20`
-    //   )
-    //   .then(function(res) {
-    //     self.setState({ housesArr: res.data, houseList: allHouses });
-    //   });
-  }
-  //   {
-  //     apiId: 5,
-  //     title: 'A Feast for Crows',
-  //     seriesNumber: 'A Song Of Ice and Fire #4',
-  //     author: 'George R.R. Martin',
-  //     datePublished: 2005,
-  //     numOfPages: 748,
-  //     coverImage: 'https://images.gr-assets.com/books/1525084743l/147917.jpg'
-  //   },
   renderBooks() {
     const mainBooks = this.props.mainBooksArr;
     console.log('main books arr', mainBooks);
@@ -86,6 +64,15 @@ class MainTexts extends React.Component {
         key={book.apiId}
       >
         <CardContent>
+          <Typography
+            variant="h2"
+            style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
+            align="center"
+          >
+            {book.title}
+          </Typography>
+        </CardContent>
+        <CardContent>
           <CardMedia
             component="img"
             // style={{ height: '40%', width: '20%' }}
@@ -95,15 +82,8 @@ class MainTexts extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive' }}
-            align="center"
-          >
-            {book.title}
-          </Typography>
-          <Typography
             variant="h3"
-            style={{ fontFamily: 'Marck Script,cursive' }}
+            style={{ fontFamily: 'Marck Script,cursive', color: '#54bd9f' }}
             align="center"
           >
             {book.seriesNumber}
@@ -112,24 +92,24 @@ class MainTexts extends React.Component {
         <CardContent>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
+            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             align="center"
           >
-            author: {book.author}
+            {book.author}
           </Typography>
+        </CardContent>
+        <CardContent>
           <Typography
             variant="h4"
             style={{ fontFamily: 'Pirata One, cursive' }}
-            align="center"
           >
             pages: {book.numOfPages}
           </Typography>
           <Typography
             variant="h4"
             style={{ fontFamily: 'Pirata One, cursive' }}
-            align="center"
           >
-            published:{book.datePublished}
+            published: {book.datePublished}
           </Typography>
         </CardContent>
       </Card>
@@ -144,11 +124,11 @@ class MainTexts extends React.Component {
           <Card>
             <CardContent>
               <Typography
-                variant="h4"
+                variant="h2"
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >
-                major works in series to date
+                Novels
               </Typography>
             </CardContent>
           </Card>

@@ -6,15 +6,15 @@ import PropTypes from 'prop-types';
 
 import {
   Home,
-  AllBooks,
-  FindBooks,
   SingleBook,
   HousesRegion,
   HousesName,
   HousesRegionDetail,
   SingleHouseInfo,
   MainTexts,
-  MinorTexts
+  MinorTexts,
+  CharsByCulture,
+  CultureDetail
 } from './components';
 
 export default class Routes extends Component {
@@ -29,6 +29,8 @@ export default class Routes extends Component {
         <Route exact path="/HousesInRegion" component={HousesRegionDetail} />
         <Route exact path="/HousesByName" component={HousesName} />
         <Route exact path="/IndividualHouse" component={SingleHouseInfo} />
+        <Route exact path="/AllCultures" component={CharsByCulture} />
+        <Route exact path="/CultureDetail" component={CultureDetail} />
       </Switch>
     );
   }

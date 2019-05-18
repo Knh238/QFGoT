@@ -53,18 +53,6 @@ class MinorTexts extends React.Component {
     this.renderBooks = this.renderBooks.bind(this);
   }
 
-  componentDidMount() {
-    const self = this;
-    // const currPage = this.state.currentPage;
-    // const allHouses = this.props.allHouses;
-
-    // return axios
-    //   .get(`https://www.anapioficeandfire.com/api/books/1`)
-    //   .then(function(res) {
-    //     self.setState({ housesArr: res.data, houseList: allHouses });
-    //   });
-  }
-
   renderBooks() {
     const mainBooks = this.props.minorBooksArr;
     console.log('main books arr', mainBooks);
@@ -75,51 +63,49 @@ class MinorTexts extends React.Component {
         }}
         key={book.apiId}
       >
-        {/* <CardContent>
-          <CardMedia
-            component="img"
-            // style={{ height: '40%', width: '20%' }}
-            image={book.coverImage}
-            title="key"
-          />
-        </CardContent> */}
         <CardContent>
           <Typography
             variant="h2"
-            style={{ fontFamily: 'Pirata One, cursive' }}
+            style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
             {book.title}
-          </Typography>
-          <Typography
-            variant="h3"
-            style={{ fontFamily: 'Marck Script,cursive' }}
-            align="center"
-          >
-            {book.seriesNumber}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
+            style={{ fontFamily: 'Marck Script,cursive', fontWeight: 'bold' }}
             align="center"
           >
-            author: {book.author}
+            {book.author}
           </Typography>
+        </CardContent>
+        <CardContent>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
-            align="center"
+            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
           >
             pages: {book.numOfPages}
           </Typography>
           <Typography
             variant="h4"
-            style={{ fontFamily: 'Pirata One, cursive' }}
-            align="center"
+            style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
           >
             published:{book.datePublished}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: 'Marck Script,cursive',
+              color: '#dab239',
+              fontWeight: 'bold'
+            }}
+            align="center"
+          >
+            type: {book.mediaType}
           </Typography>
         </CardContent>
       </Card>
@@ -134,11 +120,11 @@ class MinorTexts extends React.Component {
           <Card>
             <CardContent>
               <Typography
-                variant="h4"
-                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+                variant="h2"
+                style={{ fontFamily: 'Pirata One, cursive' }}
                 align="center"
               >
-                other novellas, graphic novels, and companion texts
+                Novellas, Graphic Novels, & Companion Works
               </Typography>
             </CardContent>
           </Card>
