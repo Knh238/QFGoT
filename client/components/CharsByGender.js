@@ -369,8 +369,8 @@ class CharsByGender extends React.Component {
     const cultureName = this.props.location.state.gender;
     return (
       <Paper>
-        <Card style={{ backgroundColor: '#2e4b77' }}>
-          <CardContent align="center">
+        <Card align="center">
+          <CardContent align="center" style={{ backgroundColor: '#2e4b77' }}>
             <Typography
               variant="h1"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
@@ -379,6 +379,25 @@ class CharsByGender extends React.Component {
               {cultureName} Characters
             </Typography>
           </CardContent>
+          {cultureName === 'Female' ? (
+            <CardContent>
+              <CardMedia
+                component="img"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7d99oQHo4ks3wHeIVp-lJwpS-5q9rzoWv7RySzy-qNQFgTGKP"
+                title="key"
+                style={{ height: '40%', width: '30%' }}
+              />
+            </CardContent>
+          ) : (
+            <CardContent>
+              <CardMedia
+                component="img"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrz1HCHooHNzhKdS11b1ycBzzX32-yBQIA9og7wQ8DsjVAlZqDwA"
+                title="key"
+                style={{ height: '40%', width: '30%' }}
+              />
+            </CardContent>
+          )}
         </Card>
         <div
           style={{

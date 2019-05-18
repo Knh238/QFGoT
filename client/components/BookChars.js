@@ -4,17 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   container: {
@@ -42,7 +36,7 @@ const styles = theme => ({
 class BookChars extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { charsArr: [], currentPage: 1 };
+    this.state = { charsArr: [] };
     this.renderChars = this.renderChars.bind(this);
   }
 
@@ -157,15 +151,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getBookList: id => dispatch(getBookList(id))
-  };
-};
-
 BookChars.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps, null)(
   withStyles(styles, { withTheme: true })(BookChars)
 );

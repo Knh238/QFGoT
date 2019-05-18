@@ -4,20 +4,13 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import AddIcon from '@material-ui/icons/Add';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { getHouseList } from '../store/booksReducer';
 
 const styles = theme => ({
@@ -31,10 +24,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around'
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
+
   dense: {
     marginTop: 16
   },
@@ -48,7 +38,7 @@ class HousesName extends React.Component {
     super(props);
     this.state = {
       housesArr: [],
-      houseList: {},
+
       currentPage: 1
     };
     this.loadNextHouses = this.loadNextHouses.bind(this);
@@ -74,9 +64,7 @@ class HousesName extends React.Component {
     const self = this;
     let oldPage = this.state.currentPage;
 
-    if (oldPage === 23) {
-      return;
-    } else {
+    if (oldPage < 23) {
       let newPage = oldPage++;
       return axios
         .get(
@@ -90,16 +78,14 @@ class HousesName extends React.Component {
   loadPrevHouses() {
     const self = this;
     let currPage = this.state.currentPage;
-    if (currPage === 1) {
-      return;
-    } else {
+    if (currPage < 1) {
       let newCurrPage = currPage--;
       return axios
         .get(
           `https://www.anapioficeandfire.com/api/houses?page=${newCurrPage}&pageSize=20`
         )
         .then(function(res) {
-          self.setState({ housesArr: res.data, currentPage: newPage });
+          self.setState({ housesArr: res.data, currentPage: newCurrPage });
         });
     }
   }
