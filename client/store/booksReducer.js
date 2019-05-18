@@ -41,52 +41,60 @@ const gotBookInfo = bookInfo => ({
 
 export const getHouseList = () => dispatch => {
   const houseMap = {};
-  axios
-    .get(`https://www.anapioficeandfire.com/api/houses?page=${1}&pageSize=50`)
-    .then(function(res) {
-      const housesData = res.data;
 
-      const houseArr1 = housesData.forEach(
-        house => (houseMap[house.url.slice(45)] = { name: house.name })
-      );
-    });
-  axios
-    .get(`https://www.anapioficeandfire.com/api/houses?page=${2}&pageSize=50`)
-    .then(function(res) {
-      const housesData2 = res.data;
+  for (let h = 1; h < 9; h++) {
+    grabHouses(h);
+  }
+  function grabHouses(num) {
+    axios
+      .get(
+        `https://www.anapioficeandfire.com/api/houses?page=${num}&pageSize=50`
+      )
+      .then(function(res) {
+        const housesData = res.data;
 
-      const houseArr2 = housesData2.forEach(
-        house => (houseMap[house.url.slice(45)] = { name: house.name })
-      );
-    });
+        const houseArr1 = housesData.forEach(
+          house => (houseMap[house.url.slice(45)] = { name: house.name })
+        );
+      });
+  }
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/houses?page=${2}&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData2 = res.data;
 
-  axios
-    .get(`https://www.anapioficeandfire.com/api/houses?page=${3}&pageSize=50`)
-    .then(function(res) {
-      const housesData3 = res.data;
+  //     const houseArr2 = housesData2.forEach(
+  //       house => (houseMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
 
-      const houseArr3 = housesData3.forEach(
-        house => (houseMap[house.url.slice(45)] = { name: house.name })
-      );
-    });
-  axios
-    .get(`https://www.anapioficeandfire.com/api/houses?page=${4}&pageSize=50`)
-    .then(function(res) {
-      const housesData4 = res.data;
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/houses?page=${3}&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData3 = res.data;
 
-      const houseArr4 = housesData4.forEach(
-        house => (houseMap[house.url.slice(45)] = { name: house.name })
-      );
-    });
-  axios
-    .get(`https://www.anapioficeandfire.com/api/houses?page=${5}&pageSize=50`)
-    .then(function(res) {
-      const housesData5 = res.data;
+  //     const houseArr3 = housesData3.forEach(
+  //       house => (houseMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/houses?page=${4}&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData4 = res.data;
 
-      const houseArr5 = housesData5.forEach(
-        house => (houseMap[house.url.slice(45)] = { name: house.name })
-      );
-    });
+  //     const houseArr4 = housesData4.forEach(
+  //       house => (houseMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
+  // axios
+  //   .get(`https://www.anapioficeandfire.com/api/houses?page=${5}&pageSize=50`)
+  //   .then(function(res) {
+  //     const housesData5 = res.data;
+
+  //     const houseArr5 = housesData5.forEach(
+  //       house => (houseMap[house.url.slice(45)] = { name: house.name })
+  //     );
+  //   });
 
   console.log('house arrr is ', houseMap);
   dispatch(gotHouseList(houseMap));
@@ -96,65 +104,22 @@ export const getCharList = () => dispatch => {
   const allCharsMap = {};
   //43 pages to get  by going through 50 eahc time
 
-  for (let i = 1; i <= 43; i++) {
+  for (let i = 1; i < 43; i++) {
+    grabChars(i);
+  }
+  function grabChars(num) {
     axios
       .get(
-        `https://www.anapioficeandfire.com/api/characters?page=${i}&pageSize=50`
+        `https://www.anapioficeandfire.com/api/characters?page=${num}&pageSize=50`
       )
       .then(function(res) {
-        const housesData = res.data;
+        const charsData = res.data;
 
-        const houseArr1 = housesData.forEach(
-          house => (allCharsMap[house.url.slice(45)] = { name: house.name })
+        const charsArr1 = charsData.forEach(
+          person => (allCharsMap[person.url.slice(49)] = { name: person.name })
         );
       });
   }
-  // axios
-  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
-  //   .then(function(res) {
-  //     const housesData = res.data;
-
-  //     const houseArr1 = housesData.forEach(
-  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
-  //     );
-  //   });
-  // axios
-  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
-  //   .then(function(res) {
-  //     const housesData2 = res.data;
-
-  //     const houseArr2 = housesData2.forEach(
-  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
-  //     );
-  //   });
-
-  // axios
-  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
-  //   .then(function(res) {
-  //     const housesData3 = res.data;
-
-  //     const houseArr3 = housesData3.forEach(
-  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
-  //     );
-  //   });
-  // axios
-  //   .get(`https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
-  //   .then(function(res) {
-  //     const housesData4 = res.data;
-
-  //     const houseArr4 = housesData4.forEach(
-  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
-  //     );
-  //   });
-  // axios
-  //   .get('https://www.anapioficeandfire.com/api/characters?page=5&pageSize=50`)
-  //   .then(function(res) {
-  //     const housesData5 = res.data;
-
-  //     const houseArr5 = housesData5.forEach(
-  //       house => (allCharsMap[house.url.slice(45)] = { name: house.name })
-  //     );
-  //   });
 
   console.log('charactersmap arrr is ', allCharsMap);
   dispatch(gotAllChars(allCharsMap));
@@ -348,6 +313,7 @@ const initialState = {
   bookInfo: {},
   allHouses: {},
   allChars: {},
+  housesLoaded: false,
   charsLoaded: false,
   charsInBook: [],
   charInfo: {},
@@ -360,7 +326,7 @@ const initialState = {
 const booksReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_HOUSE_LIST:
-      return { ...state, allHouses: action.allHouses };
+      return { ...state, allHouses: action.allHouses, housesLoaded: true };
     case GOT_BOOK_CHAR_LIST:
       return {
         ...state,

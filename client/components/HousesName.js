@@ -53,6 +53,7 @@ class HousesName extends React.Component {
     };
     this.loadNextHouses = this.loadNextHouses.bind(this);
     this.loadPrevHouses = this.loadPrevHouses.bind(this);
+    this.renderMembers = this.renderMembers.bind(this);
   }
 
   componentDidMount() {
@@ -94,37 +95,59 @@ class HousesName extends React.Component {
       });
   }
 
+  renderMembers(members) {
+    const allChars = this.props.allChars;
+    const allMems = [];
+    members.forEach(member => allMems.push(allChars[member.slice(49)].name));
+    if (allMems.length > 1) {
+      return allMems.map(person => (
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          {person}
+        </Typography>
+      ));
+    }
+
+    console.log('all mems', allMems);
+  }
   renderOverlord(overlord) {
     const allHouses = this.props.allHouses;
     if (overlord.length > 1) {
       const overlordStr = overlord.slice(45);
-      const overlordNum = parseInt(overlordStr);
-      if (overlordNum < 250) {
-        const overlordName = allHouses[overlordStr].name;
-        return (
-          <CardContent align="center">
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
-              component={Link}
-              to={{
-                pathname: '/IndividualHouse',
-                state: {
-                  houseId: overlordStr
-                }
-              }}
-            >
-              overlord:{overlordName}
-            </Button>
-          </CardContent>
-        );
-      }
+      const overlordName = allHouses[overlordStr].name;
+      return (
+        <CardContent align="center">
+          <Typography
+            variant="h4"
+            style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
+          >
+            overlord:
+          </Typography>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#dab239', fontFamily: 'Signika' }}
+            component={Link}
+            to={{
+              pathname: '/IndividualHouse',
+              state: {
+                houseId: overlordStr
+              }
+            }}
+          >
+            {overlordName}
+          </Button>
+        </CardContent>
+      );
     } else {
       return '';
     }
   }
   renderRegions() {
     const allHouses = this.props.allHouses;
+    const allChars = this.props.allChars;
     return this.state.housesArr.map(house => (
       <Card
         style={{
@@ -175,31 +198,35 @@ class HousesName extends React.Component {
           </Typography>
         </CardContent>
         <CardContent>
-          <Typography
-            variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-            align="center"
-          >
-            {house.currentlord}
-          </Typography>
+          {house.currentLord.length > 1 ? (
+            <Typography
+              variant="h5"
+              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+              align="center"
+            >
+              Current Lord: {allChars[house.currentLord.slice(49)].name}
+            </Typography>
+          ) : null}
         </CardContent>
         <CardContent>
-          {/* <Typography
+          <Typography
             variant="h5"
-            style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+            style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
             align="center"
           >
-            {house.overlord.slice(45)}
-          </Typography> */}
-          {this.renderOverlord(house.overlord)}
+            swornMembers:
+          </Typography>
+          {house.swornMembers.length > 1
+            ? this.renderMembers(house.swornMembers)
+            : null}
         </CardContent>
+        <CardContent>{this.renderOverlord(house.overlord)}</CardContent>
       </Card>
     ));
   }
   render() {
     const { classes } = this.props;
-    // console.log('this state house is', this.state.housesArr);
-    console.log('this state house all houses ', this.props.allHouses);
+
     return (
       <Paper>
         <Card>
@@ -280,7 +307,8 @@ class HousesName extends React.Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    allHouses: state.allHouses
+    allHouses: state.allHouses,
+    allChars: state.allChars
   };
 };
 const mapDispatchToProps = dispatch => {

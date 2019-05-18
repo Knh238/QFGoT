@@ -52,7 +52,24 @@ class MainTexts extends React.Component {
     };
     this.renderBooks = this.renderBooks.bind(this);
   }
+  renderMembers(members) {
+    const allChars = this.props.allChars;
+    const allMems = [];
+    members.forEach(member => allMems.push(allChars[member.slice(49)].name));
+    if (allMems.length > 1) {
+      return allMems.map(person => (
+        <Typography
+          variant="h5"
+          style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+          align="center"
+        >
+          {person}
+        </Typography>
+      ));
+    }
 
+    console.log('all mems', allMems);
+  }
   renderBooks() {
     const mainBooks = this.props.mainBooksArr;
     console.log('main books arr', mainBooks);
@@ -112,6 +129,18 @@ class MainTexts extends React.Component {
             published: {book.datePublished}
           </Typography>
         </CardContent>
+        {/* <CardContent>
+          <Typography
+            variant="h5"
+            style={{ fontFamily: 'Uncial Antiqua, cursive', color: '#22949f' }}
+            align="center"
+          >
+            swornMembers:
+          </Typography>
+          {house.swornMembers.length > 1
+            ? this.renderMembers(house.swornMembers)
+            : null}
+        </CardContent> */}
       </Card>
     ));
   }
@@ -154,7 +183,8 @@ const mapStateToProps = state => {
   return {
     ...state,
     allHouses: state.allHouses,
-    mainBooksArr: state.mainBooksArr
+    mainBooksArr: state.mainBooksArr,
+    allChars: state.allChars
   };
 };
 const mapDispatchToProps = dispatch => {

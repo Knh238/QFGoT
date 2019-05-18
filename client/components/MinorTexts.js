@@ -150,7 +150,8 @@ const mapStateToProps = state => {
   return {
     ...state,
     allHouses: state.allHouses,
-    minorBooksArr: state.minorBooksArr
+    minorBooksArr: state.minorBooksArr,
+    allChars: state.allChars
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -55,10 +55,9 @@ class NavDrawer extends React.Component {
     if (!this.props.charsLoaded) {
       this.props.getCharList();
     }
-    // if(!this.props.charsLoaded){
-    //   this.props.getCharList();
-    // }
-    // this.props.getHouseList();
+    if (!this.props.housesLoaded) {
+      this.props.getHouseList();
+    }
   }
 
   render() {
@@ -226,7 +225,8 @@ const mapStateToProps = state => {
     ...state,
     allHouses: state.allHouses,
     allChars: state.allChars,
-    charsLoaded: state.charsLoaded
+    charsLoaded: state.charsLoaded,
+    housesLoaded: state.housesLoaded
   };
 };
 
