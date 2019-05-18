@@ -70,7 +70,7 @@ class CharsByGender extends React.Component {
         `https://www.anapioficeandfire.com/api/characters?page=${newPage}&pageSize=50&gender=${currGenderN}`
       )
       .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
+        self.setState({ charsArr: res.data, currentPage: newPage });
       });
   }
   loadPrevHouses() {
@@ -83,7 +83,7 @@ class CharsByGender extends React.Component {
         `https://www.anapioficeandfire.com/api/characters?page=${newPage}&pageSize=50&gender=${currGenderP}`
       )
       .then(function(res) {
-        self.setState({ housesArr: res.data, currentPage: newPage });
+        self.setState({ charsArr: res.data, currentPage: newPage });
       });
   }
   renderChars() {
@@ -228,7 +228,8 @@ class CharsByGender extends React.Component {
                 style={{ fontFamily: 'Uncial Antiqua, cursive' }}
                 align="center"
               >
-                current page: {this.state.currentPage} of 23
+                current page: {this.state.currentPage} of{' '}
+                {this.state.gender === 'Female' ? 10 : 34}
               </Typography>
             </CardContent>
             <CardContent align="center">
@@ -243,7 +244,7 @@ class CharsByGender extends React.Component {
                 onClick={this.loadPrevHouses}
               >
                 <KeyboardArrowLeftIcon />
-                previous 20
+                previous 50
               </Button>
               <Button
                 variant="contained"
@@ -254,7 +255,7 @@ class CharsByGender extends React.Component {
                 align="center"
                 onClick={this.loadNextHouses}
               >
-                next 20
+                next 50
                 <KeyboardArrowRightIcon />
               </Button>
             </CardContent>
@@ -287,3 +288,6 @@ CharsByGender.propTypes = {
 export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(styles, { withTheme: true })(CharsByGender)
 );
+
+//men - 34
+//women its 10

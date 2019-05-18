@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 import {
   Home,
-  SingleBook,
   HousesRegion,
   HousesName,
   HousesRegionDetail,
@@ -14,7 +13,8 @@ import {
   MainTexts,
   MinorTexts,
   CharsByCulture,
-  CultureDetail
+  CultureDetail,
+  CharsByGender
 } from './components';
 
 export default class Routes extends Component {
@@ -24,12 +24,12 @@ export default class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/MainTexts" component={MainTexts} />
         <Route exact path="/MinorTexts" component={MinorTexts} />
-        <Route exact path="/SingleBook" component={SingleBook} />
         <Route exact path="/HousesByRegion" component={HousesRegion} />
         <Route exact path="/HousesInRegion" component={HousesRegionDetail} />
         <Route exact path="/HousesByName" component={HousesName} />
         <Route exact path="/IndividualHouse" component={SingleHouseInfo} />
         <Route exact path="/AllCultures" component={CharsByCulture} />
+        <Route exact path="/CharsByGender" component={CharsByGender} />
         <Route exact path="/CultureDetail" component={CultureDetail} />
       </Switch>
     );

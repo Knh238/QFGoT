@@ -179,8 +179,34 @@ class NavDrawer extends React.Component {
             >
               <ListItemText inset primary="By Culture" />
             </ListItem>
-            <ListItem button key="by gender">
+            {/* <ListItem button key="by gender">
               <ListItemText inset primary="By Gender" />
+            </ListItem> */}
+            <ListItem
+              button
+              key="by gender"
+              component={Link}
+              to={{
+                pathname: '/CharsByGender',
+                state: {
+                  gender: 'Female'
+                }
+              }}
+            >
+              <ListItemText inset primary="Female Chars" />
+            </ListItem>
+            <ListItem
+              button
+              key="by gender"
+              component={Link}
+              to={{
+                pathname: '/CharsByGender',
+                state: {
+                  gender: 'Male'
+                }
+              }}
+            >
+              <ListItemText inset primary="Male Chars" />
             </ListItem>
             <ListItem button key="by book">
               <ListItemText inset primary="By Book" />
