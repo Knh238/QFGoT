@@ -4,17 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -26,7 +21,6 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around'
   },
-
   dense: {
     marginTop: 16
   }
@@ -43,7 +37,7 @@ class SingleCharView extends React.Component {
   componentDidMount() {
     const self = this;
     const charId = this.props.location.state.charId;
-    const charName = this.props.location.state.charName;
+    // const charName = this.props.location.state.charName;
     console.log('character id in the single var view is '.charId);
     return axios
       .get(`https://www.anapioficeandfire.com/api/characters/${charId}`)

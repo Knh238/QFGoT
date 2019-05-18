@@ -12,8 +12,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import SecurityIcon from '@material-ui/icons/Security';
 import BookIcon from '@material-ui/icons/Book';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
@@ -48,7 +46,7 @@ const styles = theme => ({
 class NavDrawer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { houseList: {} };
+    this.state = {};
   }
 
   componentDidMount() {

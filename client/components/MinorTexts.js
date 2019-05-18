@@ -4,19 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import AddIcon from '@material-ui/icons/Add';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { getHouseList } from '../store/booksReducer';
 
 const styles = theme => ({
@@ -45,11 +35,7 @@ const styles = theme => ({
 class MinorTexts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      housesArr: [],
-      houseList: {},
-      currentPage: 1
-    };
+    this.state = {};
     this.renderBooks = this.renderBooks.bind(this);
   }
 
@@ -207,6 +193,7 @@ class MinorTexts extends React.Component {
               Read more @
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://www.goodreads.com/series/43790-a-song-of-ice-and-fire"
               >
                 Goodreads

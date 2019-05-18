@@ -8,13 +8,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   container: {
@@ -80,9 +77,7 @@ class CharsByGender extends React.Component {
     const currGenderN = this.state.gender;
     const currMax = this.state.maxPage;
     const self = this;
-    if (oldPage === currMax) {
-      return;
-    } else {
+    if (oldPage < currMax) {
       return axios
         .get(
           `https://www.anapioficeandfire.com/api/characters?page=${newPage}&pageSize=50&gender=${currGenderN}`
@@ -94,9 +89,7 @@ class CharsByGender extends React.Component {
   }
   loadPrevHouses() {
     let currPage = this.state.currentPage;
-    if (currPage === 1) {
-      return;
-    } else {
+    if (currPage > 1) {
       let newCurrPage = currPage--;
       const self = this;
       const currGenderP = this.state.gender;
@@ -105,7 +98,7 @@ class CharsByGender extends React.Component {
           `https://www.anapioficeandfire.com/api/characters?page=${newCurrPage}&pageSize=50&gender=${currGenderP}`
         )
         .then(function(res) {
-          self.setState({ charsArr: res.data, currentPage: newPage });
+          self.setState({ charsArr: res.data, currentPage: newCurrPage });
         });
     }
   }
