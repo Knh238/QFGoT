@@ -15,7 +15,8 @@ import {
   CharsByCulture,
   CultureDetail,
   CharsByGender,
-  BookChars
+  BookChars,
+  SingleCharView
 } from './components';
 
 export default class Routes extends Component {
@@ -32,6 +33,7 @@ export default class Routes extends Component {
         <Route exact path="/AllCultures" component={CharsByCulture} />
         <Route exact path="/CharsByGender" component={CharsByGender} />
         <Route exact path="/CharsByBook" component={BookChars} />
+        <Route exact path="/IndividualChar" component={SingleCharView} />
         <Route exact path="/CultureDetail" component={CultureDetail} />
       </Switch>
     );

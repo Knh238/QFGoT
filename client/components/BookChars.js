@@ -60,8 +60,8 @@ class BookChars extends React.Component {
     const charsArr = this.state.charsArr;
     const bookCast = [];
     charsArr.forEach(person => bookCast.push(person.slice(49)));
-    console.log('book arr', bookCast);
-    console.log('allchars', allChars);
+    console.log('book cast arr', bookCast);
+
     return bookCast.map(person => (
       <Card
         style={{
@@ -71,16 +71,37 @@ class BookChars extends React.Component {
       >
         {person !== '' ? (
           <CardContent align="center">
-            {/* <Button color:color: '#54bd9f'/> */}
-            <Typography
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: '#54bd9f',
+                fontFamily: 'Uncial Antiqua, cursive',
+                fontSize: 35,
+                borderRadius: 15,
+                fontWeight: 'bold'
+              }}
+              component={Link}
+              to={{
+                pathname: '/IndividualChar',
+                state: {
+                  charId: person
+                }
+              }}
+            >
+              {allChars[person] ? allChars[person].name : null}
+            </Button>
+          </CardContent>
+        ) : null}
+        {/* <Button color:color: '#54bd9f'/> */}
+        {/* <Typography
               variant="h2"
               style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
               align="center"
             >
               {allChars[person] ? allChars[person].name || '' : null}
             </Typography>
-          </CardContent>
-        ) : null}
+          </CardContent> */}
+        {/* ) : null} */}
       </Card>
     ));
   }

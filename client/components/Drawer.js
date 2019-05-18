@@ -68,10 +68,10 @@ class NavDrawer extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography
-              variant="h3"
+              variant="h2"
               color="inherit"
               noWrap
-              style={{ marginLeft: '42%', fontFamily: 'Pirata One, cursive' }}
+              style={{ marginLeft: '35%', fontFamily: 'Pirata One, cursive' }}
             >
               Kristin's Game of Thrones Build
             </Typography>
