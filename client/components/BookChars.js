@@ -106,6 +106,15 @@ class BookChars extends React.Component {
               {bookName} Characters
             </Typography>
           </CardContent>
+          <CardContent align="center" style={{ backgroundColor: '#2e4b77' }}>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
+              align="center"
+            >
+              Click on character name for more info!
+            </Typography>
+          </CardContent>
         </Card>
         <div
           style={{

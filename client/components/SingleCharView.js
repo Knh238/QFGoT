@@ -140,7 +140,7 @@ class SingleCharView extends React.Component {
     const person = this.state.charInfo;
 
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         {person.name ? (
           <Card
             style={{
