@@ -123,47 +123,47 @@ export const minorBooksArr = [
   {
     apiId: 4,
     title: 'The Hedge Knight',
-
     author: 'George R.R. Martin',
     mediaType: 'graphic novel',
     datePublished: 2005,
-    numOfPages: 164
+    numOfPages: 164,
+    coverImage: 'https://images.gr-assets.com/books/1310018362l/11970747.jpg'
   },
   {
     apiId: 6,
     title: 'The Sworn Sword',
-
     author: 'George R.R. Martin',
     datePublished: 2008,
     mediaType: 'graphic novel',
-    numOfPages: 152
+    numOfPages: 152,
+    coverImage: 'https://images.gr-assets.com/books/1397654143l/11985631.jpg'
   },
   {
     apiId: 7,
     title: 'The Mystery Knight',
-
     author: 'George R.R. Martin',
     datePublished: 2011,
     mediaType: 'novella',
-    numOfPages: 416
+    numOfPages: 416,
+    coverImage: 'https://images.gr-assets.com/books/1397654538l/11350430.jpg'
   },
   {
     apiId: 9,
     title: 'The Princess and the Queen',
-
     author: 'George R.R. Martin',
     datePublished: 2013,
     mediaType: 'novella',
-    numOfPages: 784
+    numOfPages: 784,
+    coverImage: 'https://images.gr-assets.com/books/1433824428l/25691932.jpg'
   },
   {
     apiId: 10,
     title: 'The Rogue Prince',
-
     author: 'George R.R. Martin',
     datePublished: 2014,
     mediaType: 'novella',
-    numOfPages: 832
+    numOfPages: 832,
+    coverImage: 'https://images.gr-assets.com/books/1556999667l/45453959.jpg'
   },
   {
     apiId: 11,
@@ -171,15 +171,17 @@ export const minorBooksArr = [
     author: 'Elio Garcia, Linda Antonsson, George R. R. Martin',
     datePublished: 2014,
     mediaType: 'companion',
-    numOfPages: 336
+    numOfPages: 336,
+    coverImage: 'https://images.gr-assets.com/books/1400360220l/17345242.jpg'
   },
   {
     apiId: 12,
     title: 'A Knight of the Seven Kingdoms',
     author: 'George R.R. Martin',
     datePublished: 2015,
-    mediaType: 'novella',
-    numOfPages: 368
+    mediaType: 'collection of novellas',
+    numOfPages: 368,
+    coverImage: 'https://images.gr-assets.com/books/1423281810l/18635622.jpg'
   }
 ];
 

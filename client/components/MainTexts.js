@@ -176,6 +176,104 @@ class MainTexts extends React.Component {
           }}
         >
           {this.renderBooks()}
+          <Card
+            style={{
+              width: '40%',
+              height: '20%',
+              marginTop: 10
+            }}
+            raised={true}
+            key={12}
+          >
+            <CardContent style={{ backgroundColor: '#dab239' }}>
+              <Typography
+                variant="h4"
+                style={{ fontFamily: 'Pirata One, cursive', color: 'white' }}
+                align="center"
+              >
+                Forthcoming:
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  fontFamily: 'Marck Script,cursive',
+                  color: '#22949f',
+                  fontWeight: 'bold'
+                }}
+                align="center"
+              >
+                Yeah RIGHT! I'll believe it when I see it!!
+              </Typography>
+            </CardContent>
+            <CardContent align="center">
+              <CardMedia
+                component="img"
+                image={
+                  'https://images.gr-assets.com/books/1465341854l/12111823.jpg'
+                }
+                style={{
+                  width: '40%',
+                  height: '20%'
+                }}
+                title="key"
+              />
+            </CardContent>
+            <CardContent>
+              <Typography
+                variant="h3"
+                style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
+                align="center"
+              >
+                The Winds of Winter
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography
+                variant="h4"
+                style={{ fontFamily: 'Marck Script,cursive', color: '#54bd9f' }}
+                align="center"
+              >
+                A Song of Ice and Fire #6
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography
+                variant="h5"
+                style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
+                align="center"
+              >
+                George R. R. Martin
+              </Typography>
+            </CardContent>
+            <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography
+                variant="h5"
+                style={{ fontFamily: 'Pirata One, cursive' }}
+              >
+                pages:
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{ fontFamily: 'Signika', paddingLeft: 10 }}
+              >
+                AT LEAST 1,000
+              </Typography>
+            </CardContent>
+            <CardContent style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography
+                variant="h5"
+                style={{ fontFamily: 'Pirata One, cursive' }}
+              >
+                Published:
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{ fontFamily: 'Signika', paddingLeft: 10 }}
+              >
+                2055 or NEVER!
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
         <Card style={{ backgroundColor: '#dab239' }}>
           <CardContent
