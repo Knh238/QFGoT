@@ -5,18 +5,11 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import AddIcon from '@material-ui/icons/Add';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { getHouseList } from '../store/booksReducer';
 
 const styles = theme => ({
@@ -137,7 +130,7 @@ class MainTexts extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontSize: 30,
+              fontSize: 20,
               color: 'white',
               boderRadius: 15
             }}
@@ -160,23 +153,21 @@ class MainTexts extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <div>
-          <Card style={{ backgroundColor: '#080e28' }}>
-            <CardContent>
-              <Typography
-                variant="h3"
-                style={{ fontFamily: 'Uncial Antiqua, cursive' }}
-                align="center"
-              >
-                Novels
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
+      <Paper style={{ marginLeft: 210 }}>
+        <Card style={{ backgroundColor: '#080e28' }}>
+          <CardContent>
+            <Typography
+              variant="h3"
+              style={{ fontFamily: 'Uncial Antiqua, cursive' }}
+              align="center"
+            >
+              Novels
+            </Typography>
+          </CardContent>
+        </Card>
+
         <div
           style={{
-            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
@@ -211,7 +202,7 @@ class MainTexts extends React.Component {
             </Typography>
           </CardContent>
         </Card>
-      </div>
+      </Paper>
     );
   }
 }

@@ -19,7 +19,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { getHouseList, getCharList } from '../store/booksReducer';
 import { connect } from 'react-redux';
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const styles = theme => ({
   root: {

@@ -63,7 +63,7 @@ class CultureDetail extends React.Component {
       return bookIds.map(id => (
         <CardContent align="center" key={id}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             {bookList[id].title}
@@ -78,7 +78,7 @@ class CultureDetail extends React.Component {
       return seasons.map(season => (
         <CardContent align="center" key={season}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             {season}
@@ -98,7 +98,8 @@ class CultureDetail extends React.Component {
             style={{
               backgroundColor: '#22949f',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontWeight: 'bold'
+
+              color: 'white'
             }}
             component={Link}
             to={{
@@ -119,10 +120,11 @@ class CultureDetail extends React.Component {
       return aliases.map(alias => (
         <CardContent align="center" key={alias}>
           <Typography
-            variant="h3"
+            variant="h5"
             style={{
               fontFamily: 'Marck Script,cursive',
-              color: '#dab239'
+              color: '#dab239',
+              fontWeight: 'bold'
             }}
           >
             {alias}
@@ -136,7 +138,7 @@ class CultureDetail extends React.Component {
       return titles.map(title => (
         <CardContent key={title}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
           >
             {title}
@@ -159,7 +161,7 @@ class CultureDetail extends React.Component {
       >
         <CardContent align="center" style={{ backgroundColor: '#2d3258' }}>
           <Typography
-            variant="h2"
+            variant="h3"
             style={{ fontFamily: 'Pirata One, cursive' }}
             align="center"
           >
@@ -170,7 +172,7 @@ class CultureDetail extends React.Component {
         {person.aliases.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               align="center"
               style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
             >
@@ -181,7 +183,7 @@ class CultureDetail extends React.Component {
         ) : null}
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Marck Script,cursive' }}
           >
             {person.gender}
@@ -189,12 +191,12 @@ class CultureDetail extends React.Component {
         </CardContent>
         <CardContent>
           {person.born.length > 1 ? (
-            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
               Born: {person.born}
             </Typography>
           ) : null}
           {person.died.length > 1 ? (
-            <Typography variant="h4" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
               Died: {person.died}
             </Typography>
           ) : null}
@@ -202,7 +204,7 @@ class CultureDetail extends React.Component {
         {person.titles.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#22949f'
@@ -216,7 +218,7 @@ class CultureDetail extends React.Component {
         {person.tvSeries.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#22949f'
@@ -227,7 +229,7 @@ class CultureDetail extends React.Component {
             {this.renderTVList(person.tvSeries)}
             <Typography
               align="center"
-              variant="h3"
+              variant="h5"
               style={{
                 fontFamily: 'Pirata One, cursive',
                 color: '#54bd9f'
@@ -236,7 +238,7 @@ class CultureDetail extends React.Component {
               Played By:
             </Typography>
             <Typography
-              variant="h3"
+              variant="h5"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
               align="center"
             >
@@ -247,7 +249,7 @@ class CultureDetail extends React.Component {
         {person.allegiances.length > 1 ? (
           <CardContent>
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             >
               Allied With:
@@ -257,7 +259,7 @@ class CultureDetail extends React.Component {
         ) : null}
         <CardContent alignSelf="flex-end">
           <Typography
-            variant="h4"
+            variant="h5"
             style={{
               fontFamily: 'Signika',
               float: 'right',
@@ -274,11 +276,11 @@ class CultureDetail extends React.Component {
     const { classes } = this.props;
     const cultureName = this.props.location.state.cultureName;
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         <Card>
           <CardContent align="center" style={{ backgroundColor: '#080e28' }}>
             <Typography
-              variant="h1"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -288,7 +290,6 @@ class CultureDetail extends React.Component {
         </Card>
         <div
           style={{
-            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',

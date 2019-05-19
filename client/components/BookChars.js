@@ -58,10 +58,10 @@ class BookChars extends React.Component {
     return bookCast.map(person => (
       <Card
         style={{
-          width: '40%',
+          width: '20%',
           marginTop: 10
         }}
-        raised={true}
+        elevation={0}
         key={person}
       >
         {person !== '' ? (
@@ -69,11 +69,12 @@ class BookChars extends React.Component {
             <Button
               variant="contained"
               style={{
-                backgroundColor: '#54bd9f',
+                backgroundColor: '#2e4b77',
                 fontFamily: 'Uncial Antiqua, cursive',
-                fontSize: 35,
-                borderRadius: 15,
-                fontWeight: 'bold'
+                fontSize: 15,
+                borderRadius: 5,
+                fontWeight: 'bold',
+                color: 'white'
               }}
               component={Link}
               to={{
@@ -94,11 +95,11 @@ class BookChars extends React.Component {
     const { classes } = this.props;
     const bookName = this.props.location.state.bookTitle;
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         <Card>
-          <CardContent align="center">
+          <CardContent align="center" style={{ backgroundColor: '#2e4b77' }}>
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -108,7 +109,6 @@ class BookChars extends React.Component {
         </Card>
         <div
           style={{
-            marginLeft: '10%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',

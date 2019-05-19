@@ -54,7 +54,7 @@ class HousesRegion extends React.Component {
         style={{
           width: '40%'
         }}
-        transparent
+        elevation={0}
         key={region.name}
       >
         <CardContent align="center">
@@ -63,9 +63,9 @@ class HousesRegion extends React.Component {
             style={{
               backgroundColor: '#22949f',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 35,
+              fontSize: 25,
               color: 'white',
-              borderRadius: 15
+              borderRadius: 5
             }}
             component={Link}
             to={{
@@ -85,11 +85,11 @@ class HousesRegion extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         <Card style={{ backgroundColor: '#080e28' }}>
           <CardContent align="center">
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -97,7 +97,7 @@ class HousesRegion extends React.Component {
             </Typography>
           </CardContent>
         </Card>
-        <Card>
+        <Card elevation={0}>
           <CardContent align="center">
             <CardMedia
               component="img"
@@ -110,7 +110,6 @@ class HousesRegion extends React.Component {
         <div
           style={{
             display: 'flex',
-            marginLeft: '15%',
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center'

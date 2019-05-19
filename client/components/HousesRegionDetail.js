@@ -70,7 +70,7 @@ class HousesRegionDetail extends React.Component {
       >
         <CardContent align="center">
           <Typography
-            variant="h3"
+            variant="h4"
             style={{ fontFamily: 'Pirata One, cursive', color: '#54bd9f' }}
             align="center"
           >
@@ -81,7 +81,7 @@ class HousesRegionDetail extends React.Component {
         <CardContent align="center">
           {house.coatOfArms.length > 1 ? (
             <Typography
-              variant="h4"
+              variant="h5"
               style={{ fontFamily: 'Marck Script,cursive', color: '#dab239' }}
               align="center"
             >
@@ -93,7 +93,7 @@ class HousesRegionDetail extends React.Component {
         <CardContent align="center">
           {house.words.length > 1 ? (
             <Typography
-              variant="h5"
+              variant="h6"
               style={{ fontFamily: 'Marck Script,cursive' }}
               align="center"
             >
@@ -103,7 +103,7 @@ class HousesRegionDetail extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive', color: '#22949f' }}
           >
             Seat: {house.seats}
@@ -111,13 +111,13 @@ class HousesRegionDetail extends React.Component {
         </CardContent>
         <CardContent>
           <Typography
-            variant="h5"
+            variant="h6"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Titles: "{house.titles}"
           </Typography>
           <Typography
-            variant="h5"
+            variant="h6"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             Current Lord: "{house.currentLord.slice(49)}"
@@ -158,11 +158,11 @@ class HousesRegionDetail extends React.Component {
     const regionName = this.props.location.state.regionName;
     const regionImg = this.props.location.state.regionImg;
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         <Card style={{ backgroundColor: '#2e4b77' }}>
           <CardContent align="center">
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -182,7 +182,6 @@ class HousesRegionDetail extends React.Component {
         </Card>
         <div
           style={{
-            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',

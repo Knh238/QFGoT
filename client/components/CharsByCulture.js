@@ -51,6 +51,7 @@ class CharsByCulture extends React.Component {
           width: '20%'
         }}
         key={culture}
+        elevation={0}
       >
         <CardContent align="center">
           <Button
@@ -58,9 +59,9 @@ class CharsByCulture extends React.Component {
             style={{
               backgroundColor: '#2e4b77',
               fontFamily: 'Pirata One, cursive',
-              fontSize: 25,
+              fontSize: 20,
               color: 'white',
-              borderRadius: 15
+              borderRadius: 5
             }}
             component={Link}
             to={{
@@ -80,11 +81,11 @@ class CharsByCulture extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Paper>
-        <Card>
+      <Paper style={{ marginLeft: 210 }}>
+        <Card align="center" elevation={0}>
           <CardContent align="center" style={{ backgroundColor: '#2d3258' }}>
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -103,7 +104,6 @@ class CharsByCulture extends React.Component {
         <div
           style={{
             display: 'flex',
-            marginLeft: '15%',
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center'

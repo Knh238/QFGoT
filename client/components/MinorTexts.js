@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -162,7 +163,7 @@ class MinorTexts extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <Paper style={{ marginLeft: 210 }}>
         <div>
           <Card style={{ backgroundColor: '#080e28' }}>
             <CardContent>
@@ -178,7 +179,6 @@ class MinorTexts extends React.Component {
         </div>
         <div
           style={{
-            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
@@ -214,7 +214,7 @@ class MinorTexts extends React.Component {
             </Typography>
           </CardContent>
         </Card>
-      </div>
+      </Paper>
     );
   }
 }

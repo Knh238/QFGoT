@@ -110,7 +110,7 @@ class CharsByGender extends React.Component {
       return bookIds.map(id => (
         <CardContent align="center" key={id}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             {bookList[id].title}
@@ -125,7 +125,7 @@ class CharsByGender extends React.Component {
       return seasons.map(season => (
         <CardContent align="center" key={season}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive' }}
           >
             {season}
@@ -145,7 +145,8 @@ class CharsByGender extends React.Component {
             style={{
               backgroundColor: '#54bd9f',
               fontFamily: 'Uncial Antiqua, cursive',
-              fontWeight: 'bold'
+              // fontWeight: 'bold',
+              color: '#080e28'
             }}
             component={Link}
             to={{
@@ -166,10 +167,10 @@ class CharsByGender extends React.Component {
       return aliases.map(alias => (
         <CardContent align="center" key={alias}>
           <Typography
-            variant="h3"
+            variant="h5"
             style={{
               fontFamily: 'Marck Script,cursive',
-              color: '#ffee58'
+              color: '#dab239'
             }}
           >
             {alias}
@@ -183,7 +184,7 @@ class CharsByGender extends React.Component {
       return titles.map(title => (
         <CardContent key={title}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
           >
             {title}
@@ -207,7 +208,7 @@ class CharsByGender extends React.Component {
         <CardContent align="center" style={{ backgroundColor: '#22949f' }}>
           {person.name === '' ? (
             <Typography
-              variant="h3"
+              variant="h4"
               style={{ fontFamily: 'Pirata One, cursive', color: '#424242' }}
               align="center"
             >
@@ -215,7 +216,7 @@ class CharsByGender extends React.Component {
             </Typography>
           ) : (
             <Typography
-              variant="h3"
+              variant="h4"
               style={{ fontFamily: 'Pirata One, cursive' }}
               align="center"
             >
@@ -238,19 +239,19 @@ class CharsByGender extends React.Component {
         ) : null}
 
         <CardContent>
-          <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
+          <Typography variant="h6" style={{ fontFamily: 'Signika' }}>
             {person.gender}
           </Typography>
         </CardContent>
 
         <CardContent>
           {person.born.length > 1 ? (
-            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h6" style={{ fontFamily: 'Signika' }}>
               Born: {person.born}
             </Typography>
           ) : null}
           {person.died.length > 1 ? (
-            <Typography variant="h5" style={{ fontFamily: 'Signika' }}>
+            <Typography variant="h6" style={{ fontFamily: 'Signika' }}>
               Died: {person.died}
             </Typography>
           ) : null}
@@ -286,7 +287,7 @@ class CharsByGender extends React.Component {
                 fontFamily: 'Pirata One, cursive'
               }}
             >
-              {person.culture}
+              {' ' + person.culture}
             </Typography>
           </CardContent>
         ) : null}
@@ -345,7 +346,7 @@ class CharsByGender extends React.Component {
         ) : null}
         <CardContent alignSelf="flex-end">
           <Typography
-            variant="h5"
+            variant="h6"
             style={{
               fontFamily: 'Signika',
               float: 'right',
@@ -362,11 +363,11 @@ class CharsByGender extends React.Component {
     const { classes } = this.props;
     const cultureName = this.props.location.state.gender;
     return (
-      <Paper>
+      <Paper style={{ marginLeft: 210 }}>
         <Card align="center">
           <CardContent align="center" style={{ backgroundColor: '#2e4b77' }}>
             <Typography
-              variant="h2"
+              variant="h3"
               style={{ fontFamily: 'Pirata One, cursive', color: '#dab239' }}
               align="center"
             >
@@ -395,7 +396,6 @@ class CharsByGender extends React.Component {
         </Card>
         <div
           style={{
-            marginLeft: '15%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
