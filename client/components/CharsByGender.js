@@ -71,6 +71,32 @@ class CharsByGender extends React.Component {
         }
       });
   }
+  shouldComponentUpdate(currProps, prevProps) {
+    const self = this;
+    const currPage = this.state.currentPage;
+    if (currProps !== prevProps) {
+      const currGender = this.props.location.state.gender;
+      return axios
+        .get(
+          `https://www.anapioficeandfire.com/api/characters?page=${currPage}&pageSize=50&gender=${currGender}`
+        )
+        .then(function(res) {
+          if (currGender === 'Female') {
+            self.setState({
+              charsArr: res.data,
+              gender: currGender,
+              maxPage: 10
+            });
+          } else {
+            self.setState({
+              charsArr: res.data,
+              gender: currGender,
+              maxPage: 34
+            });
+          }
+        });
+    }
+  }
   loadNextHouses() {
     let oldPage = this.state.currentPage;
     let newPage = oldPage++;
@@ -465,7 +491,8 @@ const mapStateToProps = state => {
     bookList: state.allBooks,
     allHouses: state.allHouses,
     regionsArr: state.regionsArr,
-    allCultures: state.allCultures
+    allCultures: state.allCultures,
+    allChars: state.allChars
   };
 };
 
